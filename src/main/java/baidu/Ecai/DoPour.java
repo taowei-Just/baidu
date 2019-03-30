@@ -27,7 +27,6 @@ import java.util.*;
 
 public class DoPour {
 
-
     private String[] detailS = new String[]{"五条", "炸弹", "葫芦", "顺子", "三条", "两对", "单对", "散号"};
     private double[] mults = new double[]{9850, 218, 109, 0, 13.68, 9.12, 1.95, 3.391};
     private int[] indedeS = new int[]{200, 100, 50, 20, 20, 9, 4, 7};
@@ -389,8 +388,7 @@ public class DoPour {
         bpttomPour(info.indede, info.dub, aDouble.intValue() * info.mulripe);
         pourCount++;
         closeDialog();
-        elementutil.wait_(1);
-
+        elementutil.wait_(3);
         if (!confirmPour(i, aLong, aDouble, getBettingRecords())) {
             logUtils.saveLog2File("第" + (i + 1) + "注 期号 [" + aLong + "]金额 [" + aDouble * dubS[info.dub] * info.mulripe + "]元" + "  下注失败 !");
             if (pourCount <= info.reInCount) {
