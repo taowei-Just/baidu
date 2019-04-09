@@ -13,6 +13,9 @@ import cn.jpush.api.push.model.SMS;
 import cn.jpush.api.push.model.audience.Audience;
 import cn.jpush.api.push.model.notification.Notification;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static android.provider.ContactsContract.CommonDataKinds.BaseTypes.TYPE_CUSTOM;
 import static android.provider.ContactsContract.CommonDataKinds.Organization.TITLE;
 import static cn.jpush.api.push.model.notification.PlatformNotification.ALERT;
@@ -75,7 +78,7 @@ public class JpushTest {
     }
 
     private void start() {
-        PushPayload build = getPushPayload("message");
+        PushPayload build = getPushPayload("message:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date(System.currentTimeMillis())));
         try {
             PushResult result = jpushClient.sendPush(build);
             Out.d("Got result - " + result);

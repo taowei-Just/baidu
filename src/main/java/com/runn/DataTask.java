@@ -428,6 +428,7 @@ public class DataTask {
 
     public static class Info {
 
+        public  int index ;
         public String order;
         public String number;
         public String periods;
@@ -435,18 +436,17 @@ public class DataTask {
         public String detail;
         public String date;
         public String niuniu;
+        public String alie;
+
 
         @Override
         public String toString() {
-            return "Info{" +
+            return "Info\n{" +
+                    " periods='" + periods + '\'' +
                     "order='" + order + '\'' +
                     ", number='" + number + '\'' +
-                    ", periods='" + periods + '\'' +
-                    ", location=" + location +
                     ", detail='" + detail + '\'' +
-                    ", date='" + date + '\'' +
-                    ", niuniu='" + niuniu + '\'' +
-                    '}';
+                    ", alie='[ " + alie  + " ]}   " + "       location  "+location;
         }
     }
 }

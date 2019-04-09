@@ -47,10 +47,7 @@ public class DoPour {
         doPour.info.tag = "test_match";
         List<Long> longs = doPour.mathPriods("2019032501", 0);
         Out.e(longs.toString());
-//
-//        List<Long> longs1 = doPour.mathPriods02("2019032501", 2);
-//        Out.e(longs1.toString());
-//        doPour.waitMarketOpen();
+ 
     }
 
     public DoPour() {
@@ -953,4 +950,6 @@ public class DoPour {
 
 
     }
+    
+    
 }

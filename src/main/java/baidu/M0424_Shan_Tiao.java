@@ -15,7 +15,8 @@ public class M0424_Shan_Tiao {
         info3.precent=0.5;
         info3.minIss = 70;
         info3.expectW =10 ;
-        info3.ticketKind =1;
+        info3.money = 5000;
+        info3.ticketKind =3;
         new Main().start(info3);
     }
 }

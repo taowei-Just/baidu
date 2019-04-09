@@ -43,7 +43,7 @@ public class FastAllColor {
                 @Override
                 public void onTime(int postion, long nexTime, long time) {
                     count++;
-                 
+
                     if (count >= 5) {
                         fastAllColor.test01();
                         count = 0;
@@ -89,14 +89,18 @@ public class FastAllColor {
 //        }
 
         QuickClient quickClient = new QuickClient.Builder().build();
-        String str = "{\"lotteryId\":\"16\",\"pageSize\":\"1000\"  } ";
+        String str = "{\"lotteryId\":\"16\",\"pageSize\":\"100000\"  } ";
         quickClient.post(url, (Object) str, new StringCallback() {
             @Override
             public void onSuccess(String s) {
                 Gson gson = new Gson();
                 Info info = gson.fromJson(s, Info.class);
 //                System.err.println("info:" + info.toString());
-                insertSql(info);
+                try {
+                    insertSql(info);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 //                try {
 //                    querydata();
 //                } catch (SQLException e) {
@@ -236,9 +240,23 @@ public class FastAllColor {
         return builder.toString();
     }
 
-    private void insertSql(Info info) {
+    private void insertSql(Info info) throws SQLException {
 
         System.err.println("" + info.data.data.list.size());
+
+        ResultSet resultSet = fastMysql.queryData("select * from " + fastMysql.getTableName() + "");
+        if (resultSet.getFetchSize() > 0)
+            while (resultSet.next()) {
+                String string = resultSet.getString(4);
+                for (int i = 0; i < info.data.data.list.size(); i++) {
+                    Content content = info.data.data.list.get(i);
+                    if (content.issue.equals(string)) {
+                        info.data.data.list.remove(content);
+                        i--;
+                    }
+                }
+            }
+        resultSet.close();
         for (Content content : info.data.data.list) {
             try {
                 content.resultInfo = content.resultInfo.replace(",", "");

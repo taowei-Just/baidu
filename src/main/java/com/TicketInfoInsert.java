@@ -9,8 +9,7 @@ import java.sql.Statement;
 
 public class TicketInfoInsert implements Iinsert<DataTask.Info> {
 
-    private Statement queryStatement;
-
+    public Statement queryStatement;
     TestMysql mysql;
     private PreparedStatement preparedStatement;
 

@@ -11,11 +11,9 @@ public class TestMysql {
     private PreparedStatement prepareStatement;
     private Statement statement1;
 
-
     public Connection getCon() {
         return con;
     }
-
 
     String tableName = "";
 
@@ -192,8 +190,7 @@ public class TestMysql {
 
 
     public PreparedStatement prepareInsert() throws SQLException {
-
-        return con.prepareStatement("insert into " + tableName + " (  ordern,number,periods,location,detail,niuniu,date )values(?,?,?,?,?,?,?)");
+        return con.prepareStatement("insert into " + tableName + " (  ordern,number,periods,location,detail,niuniu,alie,date )values(?,?,?,?,?,?,?,?)");
     }
 
     public PreparedStatement prepareInsert(String sql) throws SQLException {

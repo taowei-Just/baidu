@@ -21,18 +21,18 @@ public class MathTicket {
 
     public static void main(String[] s) {
         MathTicket mathTicket = new MathTicket();
-        testMysql = new TestMysql("ticket_data_vr");
+        testMysql = new TestMysql("ticket_data_vr_1_1");
 //        for (int i = 0; i < ; i++) {
 //        }
         // 25/ 5
-        for (int i = 20; i >0 ; i--) {
-            mathTicket.start(20190330-i , 3);
+        for (int i = 7; i >=0 ; i--) {
+            mathTicket.start(20190402, i);
         }
     }
 
     private void start(long date , int inde) {
         System.err.println("\n"+date);
-        String str = "SELECT distinct(periods), date,number,ordern,location,detail FROM ticket_data_vr  where date ='"+date+"'  ORDER BY date DESC ,  periods DESC";
+        String str = "SELECT distinct(periods), date,number,ordern,location,detail FROM ticket_data_vr_1_1  where date ='"+date+"'  ORDER BY date DESC ,  periods DESC";
         ResultSet resultSet = testMysql.queryData(str);
         try {
             List<TicletTab> ticletTabList = new ArrayList<>();

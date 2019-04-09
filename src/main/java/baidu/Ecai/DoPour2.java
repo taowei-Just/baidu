@@ -39,7 +39,7 @@ public class DoPour2 {
     private int[] countS = new int[]{60, 30, 17, 7, 5, 3, 1, 2};
 
     // 间隔提醒阈值
-    private double[] thresholdS = new double[]{150, 60, 50, 20, 15, 13, 3, 4};
+    private double[] thresholdS = new double[]{150, 60, 50, 20, 20, 13, 5, 10};
     // 上衣次数据发送次数
     private double[] messAgeSends = new double[]{0, 0, 0, 0, 0, 0, 0, 0}; 
     
@@ -155,11 +155,14 @@ public class DoPour2 {
                 DataTask.Info info = infoMap.get(integer);
                 long l = Long.valueOf(winInfo.currentIssue) - Long.valueOf(info.periods);
                 Out.e("[" + detailS[integer] + "]最近一次出现：" + info.periods + " 距离当前投注期数：" + l);
-                if (l >= thresholdS[integer] && messAgeSends[integer] != l) {
+                if (l -1>= thresholdS[integer] && messAgeSends[integer] != l) {
                     sendNotifyMessage(integer, l, winInfo.currentIssue, info.periods);
                 }
                 messAgeSends[integer] = l;
             }
+            bpttomPour(0 , 4, 1);
+            Elementutil.wait_(3);
+            cancellations();
             try {
                 Thread.sleep(5 * 1000);
             } catch (InterruptedException e) {
@@ -167,10 +170,23 @@ public class DoPour2 {
             }
         }
     }
-
+    private void cancellations() {
+        List<BettingRecord> bettingRecordList = getBettingRecords();
+        for (int i = 0; i < lisStrS.size(); i++) {
+            String s = lisStrS.get(i);
+            for (int j = 0; j < bettingRecordList.size(); j++) {
+                if (s.equals(bettingRecordList.get(j).priods) && bettingRecordList.get(j).statue.equals("未开奖")) {
+                    Out.e("撤销这一期：" + bettingRecordList.get(j).toString());
+                    logUtils.saveLog2File("撤销当前期数：" + bettingRecordList.get(j).toString());
+                    String path = "/html/body/div[2]/div/div[2]/div[1]/div[2]/div/div[4]/div[1]/div/div[2]/div/div[2]/div[1]/table/tbody/tr[" + (j + 1) + "]/td[8]/button";
+                    elementutil.clickPath(path);
+                }
+            }
+        }
+    }
     private void sendNotifyMessage(Integer integer, long l, String currentIssue, String periods) {
         // [监控提醒] 当前 [三条] 已经有[20]期未出现请留意，当前销售期数为[210051]上一次出现期数为 [20120212]
-        String msg = "账号 " + info.account + " [监控提醒]当前 [" + detailS[integer] + "] 已经有[" + l + "]期未出现了，敬请留意，当前销售期数为[" + currentIssue + "]上一次出现期数为 [" + periods + "]";
+        String msg = "账号 " + info.account + " [监控提醒]当前 [" + detailS[integer] + "] 已经有[" + (l-1) + "]期未出现了，敬请留意，当前销售期数为[" + currentIssue + "]上一次出现期数为 [" + periods + "]";
         Main.pushAllMessage(msg);
     }
 
@@ -495,4 +511,164 @@ public class DoPour2 {
 
 
     }
+
+    private void bpttomPour(int i, int i1, int num) {
+
+        switch (i) {
+            case 0:
+                click5tiao();
+                break;
+            case 1:
+                clickzhadan();
+                break;
+            case 2:
+                clickhulu();
+                break;
+            case 3:
+                clickshunz();
+                break;
+            case 4:
+                clicksantiao();
+                break;
+            case 5:
+                clickliangdui();
+                break;
+            case 6:
+                clickdandui();
+                break;
+            case 7:
+                clicksanhao();
+                break;
+        }
+
+        switch (i1) {
+            case 0:
+                select2Y();
+                break;
+            case 1:
+                select1Y();
+                break;
+            case 2:
+                select2J();
+                break;
+            case 3:
+                select1J();
+                break;
+            case 4:
+                select2F();
+                break;
+
+        }
+
+        webDriver.findElement(By.id("exampleInputAmount")).clear();
+        elementutil.sendTextByid("exampleInputAmount", "" + num);
+//        elementutil.clickId("bet-confirmPour-fast");
+        elementutil.clickPath("//*[@id=\"bet-confirm-fast\"]");
+        Elementutil.wait_(2);
+        elementutil.clickPath("/html/body/div[4]/div[2]/div/div[3]/button[2]");
+
+    }
+
+    private void select2F() {
+        elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[5]/div[1]/div[1]/div/button");
+        //2分
+        elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[5]/div[1]/div[1]/div/ul/li[5]/a");
+    }
+
+    private void select1J() {
+        elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[5]/div[1]/div[1]/div/button");
+        //1角
+        elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[5]/div[1]/div[1]/div/ul/li[4]/a");
+    }
+
+    private void select2J() {
+        elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[5]/div[1]/div[1]/div/button");
+        //2角
+        elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[5]/div[1]/div[1]/div/ul/li[3]/a");
+    }
+
+    private void select1Y() {
+        elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[5]/div[1]/div[1]/div/button");
+        //1元
+        elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[5]/div[1]/div[1]/div/ul/li[2]/a");
+    }
+
+    private void select2Y() {
+        elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[5]/div[1]/div[1]/div/button");
+        //2元
+        elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[5]/div[1]/div[1]/div/ul/li[1]/a");
+    }
+    private void clickzhadan() {
+        try {
+            elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div[2]/div[27]/div[2]/button[2]");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void clickhulu() {
+
+
+        try {
+            elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div[2]/div[27]/div[2]/button[3]");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void clickshunz() {
+
+
+        try {
+            elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div[2]/div[27]/div[2]/button[4]");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void clicksantiao() {
+
+
+        try {
+            elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div[2]/div[27]/div[2]/button[5]");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void clickliangdui() {
+
+
+        try {
+            elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div[2]/div[27]/div[2]/button[6]");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void clickdandui() {
+        try {
+            elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div[2]/div[27]/div[2]/button[7]");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void clicksanhao() {
+        try {
+            elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div[2]/div[27]/div[2]/button[8]");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void click5tiao() {
+        try {
+            //5tiao
+            elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div[2]/div[27]/div[2]/button[1]");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

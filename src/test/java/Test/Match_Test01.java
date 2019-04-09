@@ -88,13 +88,13 @@ public class Match_Test01 {
         info01.minIss = 60;
         info01.mulripe = 1;
         info01.dub = 3;
-        info01.precent = 0.6;
+        info01.precent = 0.5;
         info01.ticketKind = 1;
-        info01.money = 3000;
+        info01.money = 6000;
         info01.stopLoss = 0.1;
         info01.first = 1;
-        info01.expectW = 12;
-        info01.indede = 7;
+        info01.expectW = 10;
+        info01.indede = 6;
         
        
             MatchWinInfo matchWinInfo = MatchWin.creatMatchInfo(info01);
@@ -102,10 +102,7 @@ public class Match_Test01 {
             System.out.println(matchWinInfo.toString());
             logUtils.saveLog2File(matchWinInfo.toString());
             new MatchWin(mults).matchWin(matchWinInfo ,200 ,true);
-     
-
     }
-
 
     public List<Double> matchWin(MatchWinInfo matchWinInfo) {
         return matchWin(matchWinInfo, false);

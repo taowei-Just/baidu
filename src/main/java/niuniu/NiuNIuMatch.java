@@ -70,6 +70,10 @@ public class NiuNIuMatch {
         matchNiuNiu(infoList);
     }
 
+    public static String niuniuString( String number){
+        int str = matchNiu( number);
+        return  (str >-1? str==0? "牛牛" : "牛" + str : "无牛");
+    }
     private void matchNiuNiu(List<DataTask.Info> infoList) {
         for (int i = 0; i < infoList.size(); i++) {
             DataTask.Info info = infoList.get(i);
