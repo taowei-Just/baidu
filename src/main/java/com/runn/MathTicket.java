@@ -26,13 +26,13 @@ public class MathTicket {
 //        }
         // 25/ 5
         for (int i = 7; i >=0 ; i--) {
-            mathTicket.start(20190402, i);
+            mathTicket.start(20190302, i);
         }
     }
 
     private void start(long date , int inde) {
         System.err.println("\n"+date);
-        String str = "SELECT distinct(periods), date,number,ordern,location,detail FROM ticket_data_vr_1_1  where date ='"+date+"'  ORDER BY date DESC ,  periods DESC";
+        String str = "SELECT distinct(periods), date,number,ordern,location,detail FROM ticket_data_vr_1_1  where date >'"+date+"'  ORDER BY date DESC ,  periods DESC";
         ResultSet resultSet = testMysql.queryData(str);
         try {
             List<TicletTab> ticletTabList = new ArrayList<>();

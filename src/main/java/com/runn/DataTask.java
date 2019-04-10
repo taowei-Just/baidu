@@ -441,12 +441,12 @@ public class DataTask {
 
         @Override
         public String toString() {
-            return "Info\n{" +
-                    " periods='" + periods + '\'' +
-                    "order='" + order + '\'' +
-                    ", number='" + number + '\'' +
-                    ", detail='" + detail + '\'' +
-                    ", alie='[ " + alie  + " ]}   " + "       location  "+location;
+            return  
+                    "  " + periods + '\'' +
+                    " '" + order + '\'' +
+                    ",  " + number + '\'' +
+                    ", " + detail + '\'' +
+                    ",  '[ " + alie  + " ]}   " + "       location  "+location;
         }
     }
 }

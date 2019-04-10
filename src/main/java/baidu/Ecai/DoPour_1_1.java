@@ -1,18 +1,19 @@
 package baidu.Ecai;
 
-
+import baidu.Ecai.iml.IDoPour;
+import baidu.bean.BettingRecord;
 import baidu.bean.PourInfo;
 import baidu.bean.TicketInfo;
+import baidu.bean.WinInfo;
 import baidu.utils.CoreMath;
 import baidu.utils.Elementutil;
 import baidu.utils.LogUtils;
 import baidu.utils.Out;
 import com.PattenUtil;
-import com.runn.DataTask;
-import niuniu.NiuNIuMatch;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.text.SimpleDateFormat;
@@ -27,35 +28,23 @@ import java.util.*;
  */
 
 
-public class DoPour_1_1 {
+public class DoPour_1_1 implements IDoPour {
 
-    // 描述
-    private String[] detailS = new String[]{"五条", "炸弹", "葫芦", "顺子", "三条", "两对", "单对", "散号"};
-    //倍率
-    private double[] mults = new double[]{9850, 218, 109, 0, 13.68, 9.12, 1.95, 3.391};
-    //最优投注间隔期数
-    private int[] indedeS = new int[]{200, 100, 50, 30, 15, 13, 2, 3};
-    // 最优间隔期间投注次数
-    private int[] countS = new int[]{60, 30, 17, 7, 5, 3, 1, 2};
-
-    // 间隔提醒阈值
-    private double[] thresholdS = new double[]{150, 60, 50, 20, 20, 13, 5, 10};
-    // 上衣次数据发送次数
-    private double[] messAgeSends = new double[]{0, 0, 0, 0, 0, 0, 0, 0}; 
-    
-    // 推送消息频次
-    private double[] messSendF = new double[]{0, 0, 20, 10, 4, 2, 1, 1};
-    private double[] dubS = new double[]{2.0, 1, 0.2, 0.1, 0.02};
-
-    private WinInfo lastWinInfo = null;
-
-    private List<String> lisStrS = new ArrayList<>();
-    private RemoteWebDriver webDriver;
-    private Elementutil elementutil;
-    private int maxIss = 1260;
-    private TicketInfo info;
-    private LogUtils logUtils;
-    int pourCount = 0;
+    public LogUtils logUtils;
+    public Elementutil elementutil;
+    public WinInfo lastWinInfo = null;
+    public RemoteWebDriver webDriver = null;
+    public TicketInfo info = null;
+    public int pourCount = 0;
+    List<String> windowIds;
+    public DoPour_1_1(RemoteWebDriver webDriver, TicketInfo info, List<String> windowIds) {
+        this.webDriver = webDriver;
+        this.info = info;
+        this.windowIds = windowIds;
+        this.elementutil = new Elementutil(webDriver);
+        logUtils = new LogUtils("e:\\Temp\\log\\" + new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())) + "\\" + getClass().getSimpleName() + "" + info.tag + ".txt");
+        init();
+    }
 
     public static void main(String[] args) {
 
@@ -64,14 +53,13 @@ public class DoPour_1_1 {
 
 
     }
+
     public DoPour_1_1(RemoteWebDriver webDriver, TicketInfo info) {
-        this.webDriver = webDriver;
-        this.info = info;
-        elementutil = new Elementutil(webDriver);
-        logUtils = new LogUtils("e:\\Temp\\log\\" + new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())) + "\\" + getClass().getSimpleName() + "" + info.tag + ".txt");
+        this(webDriver, info, new ArrayList<>());
     }
 
-    public void start(int index) {
+
+    public void start() {
         /**
          *
          * 查看历史数据
@@ -79,7 +67,7 @@ public class DoPour_1_1 {
          */
 //        webDriver.manage().window().maximize();
 
-        Main.pushAllMessage("启动[" + info.account + "_" + detailS[info.indede] + "]投注！");
+        message("启动[", "]投注！");
         lisStrS.clear();
         waitDialog();
 //        cancellations();
@@ -89,11 +77,6 @@ public class DoPour_1_1 {
         List<History> histories = getHistories();
         Out.e(info.tag, " histories " + histories.toString());
 
-//        if (histories != null) {
-//            Elementutil.wait_(2);
-//            restart();
-//            return;
-//        }
         // 匹配数据
         int inde = matchData(histories);
         // 生成下注组合
@@ -107,8 +90,12 @@ public class DoPour_1_1 {
         }
     }
 
+    private void message(String s, String s2) {
+        Main.pushAllMessage(s + info.account + "_" + detailS[info.indede] + s2);
+    }
+
     @NotNull
-    private List<History> getHistories() {
+    public List<History> getHistories() {
         elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[1]/div[5]/div[1]/a[1]");
         WebElement element = webDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[1]/div[5]/div[1]/a[1]/div"));
         String innerHTML = element.getAttribute("innerHTML");
@@ -134,7 +121,7 @@ public class DoPour_1_1 {
         return histories;
     }
 
-    private String readPrincipal() {
+    public String readPrincipal() {
 
         WebElement walletAmount = webDriver.findElement(By.className("walletAmount"));
         if (!walletAmount.isDisplayed()) {
@@ -146,16 +133,16 @@ public class DoPour_1_1 {
         return elementutil.readTextByClass("walletAmount");
     }
 
-    private void restart() {
+    public void restart() {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                start(0);
+                start();
             }
         }).start();
     }
 
-    private void loopIngQueue(String issue, int inde) throws Exception {
+    public void loopIngQueue(String issue, int inde) throws Exception {
 
         Out.e(info.tag, " 当前正在投注：" + issue);
         //确定下注期数
@@ -166,7 +153,7 @@ public class DoPour_1_1 {
     }
 
     @NotNull
-    private Map<Long, Double> matchBetAmount(List<Long> issueLong) {
+    public Map<Long, Double> matchBetAmount(List<Long> issueLong) {
         Map<Long, Double> doubleMap = new HashMap<>();
         double expectwin = 1;
         double precent = info.precent;
@@ -187,7 +174,7 @@ public class DoPour_1_1 {
         return doubleMap;
     }
 
-    private Map<Long, PourInfo> matchBetAmount02(List<Long> issueLong) {
+    public Map<Long, PourInfo> matchBetAmount02(List<Long> issueLong) {
         Map<Long, PourInfo> doubleMap = new HashMap<>();
 
         List<PourInfo> pourInfos = new MatchWin(mults).matchWin(MatchWin.creatMatchInfo(info), issueLong.size());
@@ -304,7 +291,7 @@ public class DoPour_1_1 {
         return issueLong;
     }
 
-    private void operate(List<Long> issueLong, Map<Long, PourInfo> doubleMap) {
+    public void operate(List<Long> issueLong, Map<Long, PourInfo> doubleMap) {
         Out.e(info.tag, "准备期数：" + issueLong.toString());
         Out.e(info.tag, "详情：" + doubleMap.toString());
 
@@ -314,7 +301,7 @@ public class DoPour_1_1 {
 
             if (pourInfo.win < 0) {
                 logUtils.saveLog2File(" 已经投注" + i + "期 达到熔断机制 执行熔断");
-                Main.pushAllMessage("当前账号" + info.account + "_" + detailS[info.indede] + "_达到投注熔断已停止投注，请及时关注！");
+                message("当前账号", "_达到投注熔断已停止投注，请及时关注！");
                 restart();
                 return;
             }
@@ -330,85 +317,107 @@ public class DoPour_1_1 {
              */
 
             Out.d(info.tag, " [ 等待出奖号码... ] ");
-                WinInfo winInfo;
-                while (true) {
-                winInfo = waitingIssue();
-                // 没有当前下注期号继续查询
-                if (winInfo.currentIssue == null)
-                    continue;
-                // 没有中奖且当前投注期数为目标期数且没有投注
-                if (winInfo.wiState != 1 && Long.valueOf(winInfo.currentIssue) >= aLong && !lisStrS.contains("" + aLong))
-                    break;
-                // 中奖了 且没有投注
-                if (winInfo.wiState == 1)
-                    break;
-
-                // 碰到 五条 炸弹  重新计算投注 中间 随机跳过投注 （以减少投入金额） 或者 下小注以免漏投导致亏损   
-
-                try {
-                    Thread.sleep(1 * 1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            WinInfo winInfo;
+            winInfo = waitCurrentWinInfo(aLong);
 
             // 中奖了但是不是投注的期数
             System.err.println("" + winInfo.toString());
-            if (winInfo.wiState != 1 || ( winInfo.wiState==1 && !lisStrS.contains(winInfo.issue)) ) {
+            if (winInfo.wiState != 1 || (winInfo.wiState == 1 && !lisStrS.contains(winInfo.issue))) {
                 pourCount = 0;
                 pour(i, aLong, aDouble);
             } else {
-                if (lisStrS.contains(winInfo.issue)){
-                    logUtils.saveLog2File("[ 当前期已中奖 ]" + winInfo.toString());
-                    Main.pushAllMessage("[ 当前期已中奖 ]" + winInfo.toString());
-
-                    lisStrS.remove(winInfo.issue);
-                }
+                wins(winInfo);
                 logUtils.saveLog2File("[ 中奖重置 ]" + winInfo.toString());
-                elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[2]/div/div[4]/div[1]/div/div[2]/div/div[2]/div[1]/table/tbody/tr[1]/td[8]/button");
                 cancellations();
-                String substring = winInfo.issue.substring(winInfo.issue.length() - 3, winInfo.issue.length());
-                System.out.println(substring);
-                if (maxIss - Long.valueOf(substring) < info.minIss) {
-                    webDriver.quit();
-                    waitMarketOpen();
+                if (matchExit(winInfo))
                     return;
-                }
                 try {
                     Thread.sleep(5 * 1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if (lastWinInfo==null || !lastWinInfo.issue.equals(winInfo.issue))
+                if (lastWinInfo == null || !lastWinInfo.issue.equals(winInfo.issue))
                     lastWinInfo = winInfo;
+
                 restart();
                 return;
             }
         }
     }
 
+    public boolean matchExit(WinInfo winInfo) {
+        String substring = winInfo.issue.substring(winInfo.issue.length() - 3, winInfo.issue.length());
+        System.out.println(substring);
+        if (maxIss - Long.valueOf(substring) < info.minIss) {
+            webDriver.quit();
+            waitMarketOpen();
+            return true;
+        }
+        return false;
+    }
 
-    private void pour(int i, Long aLong, Double aDouble) {
+    public boolean wins(WinInfo winInfo) {
+        if (lisStrS.contains(winInfo.issue)) {
+            lisStrS.remove(winInfo.issue);
+            return  true ;
+        }
+        return false;
+    }
 
+    @NotNull
+    public WinInfo waitCurrentWinInfo(Long aLong) {
+        WinInfo winInfo;
+        while (true) {
+            winInfo = waitingIssue();
+ 
+            // 没有当前下注期号继续查询
+            if (winInfo.currentIssue == null)
+                continue;
+            // 中奖了  
+            if (winInfo.wiState == 1)
+                break;
+            
+            // 没有中奖且当前投注期数为目标期数且没有投注
+
+            Out.d(winInfo.toString() +" " + aLong + "  " + lisStrS.toString());
+            if (winInfo.currentIssue.equals(""+ aLong )&& !lisStrS.contains("" + aLong))
+                break;
+       
+            try {
+                Thread.sleep(1 * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return winInfo;
+    }
+
+
+    public void pour(int i, Long aLong, Double aDouble) {
         waitDialog();
         bpttomPour(info.indede, info.dub, aDouble.intValue() * info.mulripe);
         pourCount++;
         closeDialog();
-        elementutil.wait_(5);
+        elementutil.wait_(2);
         if (!confirmPour(i, aLong, aDouble, getBettingRecords())) {
             logUtils.saveLog2File("第" + (i + 1) + "注 期号 [" + aLong + "]金额 [" + aDouble * dubS[info.dub] * info.mulripe + "]元" + "  下注失败 !");
             if (pourCount <= info.reInCount) {
                 logUtils.saveLog2File("重试第 " + pourCount + " 次下注  " + aLong);
                 pour(i, aLong, aDouble);
             }
+        }else {
+            if (!lisStrS.contains(aLong+""))
+            lisStrS.add(aLong+"");
         }
     }
 
-    private boolean confirmPour(int i, Long aLong, Double aDouble, List<BettingRecord> bettingRecords) {
+
+    public boolean confirmPour(int i, Long aLong, Double aDouble, List<BettingRecord> bettingRecords) {
         boolean have = false;
         for (int j = 0; j < bettingRecords.size(); j++) {
             BettingRecord bettingRecord = bettingRecords.get(j);
-            if ( Long.valueOf(bettingRecord.priods)>=aLong && bettingRecord.statue.equals("未开奖")) {
+            Out.e(bettingRecord.toString());
+            if ( (Long.parseLong(bettingRecord.priods)>= aLong  && (bettingRecord.statue.equals("未开奖")||bettingRecord.statue.contains("中奖")) )) {
                 lisStrS.add(aLong + "");
                 Out.e(info.tag, "第" + (i + 1) + "注 期号 [" + aLong + "]金额 [" + aDouble * dubS[info.dub] * info.mulripe + "]元" + "  下注完成 !");
                 logUtils.saveLog2File("第" + (i + 1) + "注 期号 [" + aLong + "]金额 [" + aDouble * dubS[info.dub] * info.mulripe + "]元" + "  下注完成 !");
@@ -450,7 +459,7 @@ public class DoPour_1_1 {
 
     }
 
-    private void closeDialog() {
+    public void closeDialog() {
         elementutil.wait_(2);
         WebElement path = webDriver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/p"));
         String content = path.getText();
@@ -461,7 +470,9 @@ public class DoPour_1_1 {
 //        elementutil.clickCssS("#warning-dialog > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > button:nth-child(1)");
     }
 
-    private void cancellations() {
+    public void cancellations() {
+        elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[2]/div/div[4]/div[1]/div/div[2]/div/div[2]/div[1]/table/tbody/tr[1]/td[8]/button");
+        Elementutil.wait_(2);
         List<BettingRecord> bettingRecordList = getBettingRecords();
         for (int i = 0; i < lisStrS.size(); i++) {
             String s = lisStrS.get(i);
@@ -477,10 +488,10 @@ public class DoPour_1_1 {
     }
 
     @NotNull
-    private List<BettingRecord> getBettingRecords() {
-                               
+    public List<BettingRecord> getBettingRecords() {
+        
         elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[2]/div/div[2]/div/div[1]/div/ul/li[1]/a");
-        elementutil.wait_(2);                    
+        elementutil.wait_(1);
         String innerHTML = webDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div[1]/div[2]/div/div[2]/div/div[2]/div[1]/div")).getAttribute("innerHTML");
         innerHTML = PattenUtil.replaceBlank(innerHTML).replace(" ", "");
         String regex = "class=\"odd\">(.*?)</tr>";
@@ -497,7 +508,7 @@ public class DoPour_1_1 {
         return bettingRecordList;
     }
 
-    private BettingRecord matchBetting(String st) throws Exception {
+    public BettingRecord matchBetting(String st) throws Exception {
         String regex;
         BettingRecord bettingRecord = new BettingRecord();
 
@@ -525,7 +536,7 @@ public class DoPour_1_1 {
         return bettingRecord;
     }
 
-    private WinInfo waitingIssue() {
+    public WinInfo waitingIssue() {
 
         while (true) {
             try {
@@ -550,56 +561,10 @@ public class DoPour_1_1 {
         }
     }
 
-    static class BettingRecord {
-        public int kind;
-        public String detail;
-        public String type;
-        public String priods;
-        public String desc;
-        public String money;
-        public String win;
-        public String statue;
-        public String cancellations;
-
-        @Override
-        public String toString() {
-            return "BettingRecord{" +
-                    "kind=" + kind +
-                    ", detail='" + detail + '\'' +
-                    ", type='" + type + '\'' +
-                    ", priods='" + priods + '\'' +
-                    ", desc='" + desc + '\'' +
-                    ", money='" + money + '\'' +
-                    ", win='" + win + '\'' +
-                    ", statue='" + statue + '\'' +
-                    ", cancellations='" + cancellations + '\'' +
-                    '}';
-        }
-    }
-
-    static class WinInfo {
-        public String Numner;
-        public String issue;
-        public int wiState;
-        public int winInde;
-        public String currentIssue;
-
-        @Override
-        public String toString() {
-            return "WinInfo{" +
-                    "Numner='" + Numner + '\'' +
-                    ", issue='" + issue + '\'' +
-                    ", wiState=" + wiState +
-                    ", winInde=" + winInde +
-                    ", currentIssue='" + currentIssue + '\'' +
-                    '}';
-        }
-    }
-
     String lastlastissue = "";
 
 
-    private WinInfo win() {
+    public WinInfo win() {
         WinInfo winInfo = new WinInfo();
 
         try {
@@ -636,7 +601,7 @@ public class DoPour_1_1 {
     }
 
 
-    private void bpttomPour(int i, int i1, int num) {
+    public void bpttomPour(int i, int i1, int num) {
 
         switch (i) {
             case 0:
@@ -689,13 +654,14 @@ public class DoPour_1_1 {
 //        elementutil.clickId("bet-confirmPour-fast");
         elementutil.clickPath("//*[@id=\"bet-confirm-fast\"]");
         Elementutil.wait_(2);
-      
+
         //确认
         elementutil.clickPath("/html/body/div[4]/div[2]/div/div[3]/button[2]");
 
     }
 
-    private int matchData(List<History> histories) {
+
+    public int matchData(List<History> histories) {
         int index = indedeS[info.indede];
         for (int i = 0; i < histories.size(); i++) {
             int mth = CoreMath.mth(histories.get(i).number) - 1;
@@ -708,43 +674,43 @@ public class DoPour_1_1 {
     }
 
 
+    public void select2F() {
 
-    private void select2F() {
-      
         elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[4]/div[1]/div[1]/div/button");
 
         //2分
         elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[4]/div[1]/div[1]/div/ul/li[5]/a");
     }
 
-    private void select1J() {
-    
+    public void select1J() {
+
         elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[4]/div[1]/div[1]/div/button");
 
         //1角
         elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[4]/div[1]/div[1]/div/ul/li[4]/a");
     }
 
-    private void select2J() {
+    public void select2J() {
         elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[4]/div[1]/div[1]/div/button");
 
         //2角
         elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[4]/div[1]/div[1]/div/ul/li[3]/a");
     }
 
-    private void select1Y() {
+    public void select1Y() {
         elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[5]/div[1]/div[1]/div/button");
         //1元
         elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[4]/div[1]/div[1]/div/ul/li[2]/a");
     }
 
-    private void select2Y() {
+    public void select2Y() {
         elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[4]/div[1]/div[1]/div/button");
 
         //2元
         elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[4]/div[1]/div[1]/div/ul/li[1]/a");
     }
-    private void clickzhadan() {
+
+    public void clickzhadan() {
         try {
             elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[1]/div[2]/div[27]/div[2]/button[2]");
         } catch (Exception e) {
@@ -752,7 +718,7 @@ public class DoPour_1_1 {
         }
     }
 
-    private void clickhulu() {
+    public void clickhulu() {
 
 
         try {
@@ -762,7 +728,7 @@ public class DoPour_1_1 {
         }
     }
 
-    private void clickshunz() {
+    public void clickshunz() {
 
 
         try {
@@ -772,7 +738,7 @@ public class DoPour_1_1 {
         }
     }
 
-    private void clicksantiao() {
+    public void clicksantiao() {
 
 
         try {
@@ -782,7 +748,7 @@ public class DoPour_1_1 {
         }
     }
 
-    private void clickliangdui() {
+    public void clickliangdui() {
 
 
         try {
@@ -792,7 +758,7 @@ public class DoPour_1_1 {
         }
     }
 
-    private void clickdandui() {
+    public void clickdandui() {
         try {
             elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[1]/div[2]/div[27]/div[2]/button[7]");
         } catch (Exception e) {
@@ -800,7 +766,7 @@ public class DoPour_1_1 {
         }
     }
 
-    private void clicksanhao() {
+    public void clicksanhao() {
         try {
             elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[1]/div[2]/div[27]/div[2]/button[8]");
         } catch (Exception e) {
@@ -808,7 +774,7 @@ public class DoPour_1_1 {
         }
     }
 
-    private void click5tiao() {
+    public void click5tiao() {
         try {
             //5tiao
             elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[1]/div[2]/div[27]/div[2]/button[1]");
@@ -826,7 +792,7 @@ public class DoPour_1_1 {
      * @param lastTMult 上一期盈利
      * @return
      */
-    private double matchWin(double mult, double last, double lastnum, double expectwin, double v, double lastTMult) {
+    public double matchWin(double mult, double last, double lastnum, double expectwin, double v, double lastTMult) {
 //        matchWin02(mult, last, lastnum, expectwin, v , lastTMult);
         for (double i = last; i < Integer.MAX_VALUE; i++) {
             if (i * (mult - 1) > lastnum + expectwin && (i * (mult - 1) > v + i && i * (mult - 1) > lastnum * 2 || i * (mult - 1) > lastnum + lastTMult)) {
@@ -837,7 +803,7 @@ public class DoPour_1_1 {
         return -1;
     }
 
-    private void waitDialog() {
+    public void waitDialog() {
 
         WebElement time = webDriver.findElement(By.className("time"));
         String hour = time.findElement(By.id("hour")).getText();
@@ -874,19 +840,43 @@ public class DoPour_1_1 {
 
     }
 
-    public static class History {
-        public String number = "10";
-        public String issue;
-        public String overTime;
-
-        @Override
-        public String toString() {
-            return "History{" +
-                    "number='" + number + '\'' +
-                    ", issue='" + issue + '\'' +
-                    ", overTime='" + overTime + '\'' +
-                    '}';
+    @Override
+    public void init() {
+        try {
+                                                                 
+            WebElement element = webDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div[2]/div/ul/li[3]/a/span"));
+            System.err.println(element.getText());
+            if (element.getText().contains("VR彩票"))
+                element.click();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        webDriver.close();
+
+        Elementutil.wait_(1);
+        Set<String> windowHandles = webDriver.getWindowHandles();
+        Iterator<String> iterator = windowHandles.iterator();
+        while (iterator.hasNext()) {
+            String next = iterator.next();
+            if (!windowIds.contains(next))
+                windowIds.add(next);
+        }
+
+        webDriver.switchTo().window(windowIds.get(windowIds.size() - 1));
+
+        System.err.println("当前界面id：" + webDriver.getWindowHandle());
+        Elementutil.wait_(1);
+        elementutil.waitDialog(webDriver);
+
+        Actions actions = new Actions(webDriver);
+        actions.moveToElement(webDriver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div[2]/div/div[1]/div/div/div[1]/a[21]")));
+        elementutil.clickPath("/html/body/div[2]/div/div[1]/div[2]/div/div[1]/div/div/div[1]/a[21]");
+
+        elementutil.clickId("regularBetType");
+
+        elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[1]/ul/li[14]/a");
+        elementutil.clickPath("//*[@id=\"NiuNiuStud\"]");
+
     }
 
 

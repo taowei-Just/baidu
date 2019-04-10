@@ -13,7 +13,7 @@ public class MatchWinInfo {
     //止损百分比
     public double zhiSunP = 0.4;
     //已投注开始止损金额
-    public double zhisunMoney = 3000;
+    public double zhisunMoney = -1;
     //熔断百分比
     public double rongduaPre = 0.9;
     //熔断金额

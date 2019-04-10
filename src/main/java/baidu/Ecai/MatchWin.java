@@ -71,7 +71,8 @@ public class MatchWin {
                         .setZhiSunP(info.stopLoss) 
                         .setFirstM(info.first)
                         .setAssign(info.expectW)
-                    .setRongduaPre(info.rongDuanPre);
+                    .setRongduaPre(info.rongDuanPre)
+                    .setDecreasP(info.decreasP);
                 break;
             }
         }
@@ -117,7 +118,7 @@ public class MatchWin {
             double v1 = total / matchWinInfo.maxMoney;
 
             if (v1 > matchWinInfo.zhiSunP || (matchWinInfo.zhisunMoney > 0 ? total > matchWinInfo.zhisunMoney : false)) {
-                Out.d(" 到达减损 " + i + " _ " + v1);
+//                Out.d(" 到达减损 " + i + " _ " + v1);
 
                 zhisunmode = true;
                 present -= matchWinInfo.decreasP;
@@ -131,8 +132,8 @@ public class MatchWin {
             pourInfo.win = (v * mult) - total;
             pourInfo.total = total;
             doubles.add(pourInfo);
-            Out.d("计算第：" + (i + 1) + "项 值为：" + v + " total " + total + " present " + pv * 100 + "%");
-            Out.d(" 验证 " + ((v * mult) - total));
+//            Out.d("计算第：" + (i + 1) + "项 值为：" + v + " total " + total + " present " + pv * 100 + "%");
+//            Out.d(" 验证 " + ((v * mult) - total));
 
         }
         return doubles;

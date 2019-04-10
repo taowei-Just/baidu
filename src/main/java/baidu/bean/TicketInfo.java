@@ -25,7 +25,7 @@ public class TicketInfo {
     //彩票种类
     public int ticketKind = 1; // vr1.5   快速
     // 止损百分比
-    public double stopLoss = 0.1;
+    public double stopLoss =  1;
     // 账户初始金额
     public double money = 4000;
     public String openMarket = "9";
@@ -35,10 +35,11 @@ public class TicketInfo {
     public  boolean autoStopLoss = true;
     public  boolean  useDefaultPresent =true ;
     // 下注重试次数
-    public int reInCount =3 ;
+    public int reInCount =1 ;
     //期望最小盈利
     public int expectW =10 ;
-    public double rongDuanPre = 0.9;
+    public double rongDuanPre = 1;
+    public double decreasP =0.005;
 
     String logPath ;
 

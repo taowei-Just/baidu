@@ -38,7 +38,7 @@ public class LogUtils {
 //        Main.pushAllMessage(logStr);
         threadPool.submit(new LogRunn(logStr));
     }
-    public synchronized void saveLog(String logStr) {
+    private synchronized void saveLog(String logStr) {
         Out.d(logStr);
         if (!isSave)
             return;

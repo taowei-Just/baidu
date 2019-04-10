@@ -1,5 +1,6 @@
 package baidu.Ecai;
 
+import baidu.Ecai.domain.Do01_1Runn;
 import baidu.bean.TicketInfo;
 import baidu.utils.Elementutil;
 import baidu.utils.Out;
@@ -154,38 +155,7 @@ public class MainRunn implements Runnable {
                     break; 
                     
                     case 3:
-                      element = firefoxDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div[2]/div/ul/li[3]/a/span"));
-                    System.err.println(element.getText());
-                    if (element.getText().contains("VR彩票"))
-                        element.click();
-                    firefoxDriver.close();
-
-                    Elementutil.wait_(1);
-                     windowHandles = firefoxDriver.getWindowHandles();
-                     iterator = windowHandles.iterator();
-                    while (iterator.hasNext()) {
-                        String next = iterator.next();
-                        if (!windowIds.contains("next"))
-                            windowIds.add(next);
-                    }
-
-                    firefoxDriver.switchTo().window(windowIds.get(windowIds.size() - 1));
-                    
-                    System.err.println("当前界面id：" + firefoxDriver.getWindowHandle());
-                    Elementutil.wait_(1);
-                    elementutil.waitDialog(firefoxDriver);
-
-                        Actions actions = new Actions(firefoxDriver);
-                        actions.moveToElement(firefoxDriver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div[2]/div/div[1]/div/div/div[1]/a[21]")));
-                        elementutil.clickPath("/html/body/div[2]/div/div[1]/div[2]/div/div[1]/div/div/div[1]/a[21]");
- 
-                    elementutil.clickId("regularBetType");
-                    
-                    
-                    elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[1]/ul/li[14]/a");
-                    elementutil.clickPath("//*[@id=\"NiuNiuStud\"]");
-
-                  new DoPour_1_1(firefoxDriver, info).start(4);
+                  new Do01_1Runn(firefoxDriver, info ,windowIds).start();
                     break;
         }
     }
