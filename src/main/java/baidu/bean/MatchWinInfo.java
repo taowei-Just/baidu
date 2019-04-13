@@ -24,8 +24,8 @@ public class MatchWinInfo {
     public double decreasP = 0.05;
     //第一期下注金额
     public double firstM =  -1;
-
-
+    public boolean useRongd =true;
+    public  int count = 200 ;
     public MatchWinInfo setFirstM(double firstM) {
         this.firstM = firstM;
         return this;

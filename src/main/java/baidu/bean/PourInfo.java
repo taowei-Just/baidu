@@ -7,12 +7,15 @@ public class PourInfo {
     public double win ;
     public double total ;
 
+
     @Override
     public String toString() {
         return "PourInfo{" +
-                "issue='" + issue + '\'' +
-                ", moey='" + moey + '\'' +
-                ", win='" + win + '\'' +
+                "id=" + id +
+                ", issue='" + issue + '\'' +
+                ", moey=" + moey +
+                ", win=" + win +
+                ", total=" + total +
                 '}';
     }
 }

@@ -36,6 +36,8 @@ public class FastInsert  implements Iinsert<FastAllColor.Content> {
             preparedStatement.setString(3, content.nn);
             preparedStatement.setString(4, content.issue);
             preparedStatement.setString(5, content.openingTime);
+            preparedStatement.setInt(6, content.location);
+            preparedStatement.setString(7, content.alie);
  
             boolean execute = preparedStatement.execute();
             mysql.commit();

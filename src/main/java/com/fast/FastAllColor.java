@@ -1,5 +1,6 @@
 package com.fast;
 
+import com.CoreMath;
 import com.runn.DataTask;
 import com.analyze.ArticleAnalyze;
 import com.ejin.quickhttp.QuickClient;
@@ -7,15 +8,14 @@ import com.ejin.quickhttp.StringCallback;
 import com.google.gson.Gson;
 import com.time.MyTimerTask;
 import com.time.TicketTime;
+import matchore.MatchCore;
 import okhttp3.OkHttpClient;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class FastAllColor {
@@ -34,18 +34,21 @@ public class FastAllColor {
 
     static int count = 0;
 
+    static boolean runn =false ;
     public static void main(String[] a) {
         okHttpClient = new OkHttpClient.Builder().connectTimeout(15, TimeUnit.SECONDS).build();
 
         fastAllColor = new FastAllColor();
+        
         try {
             new TicketTime().test(new MyTimerTask.TimeCAll() {
                 @Override
                 public void onTime(int postion, long nexTime, long time) {
                     count++;
-
                     if (count >= 5) {
+                        if (!runn)
                         fastAllColor.test01();
+                        
                         count = 0;
                     }
                 }
@@ -57,6 +60,7 @@ public class FastAllColor {
     }
 
     private void test01() {
+        runn =true ;
         String url = "http://www.6618222.com/frontend/v1/lottery/trend";
 //        try {
 //            FormBody.Builder builder = new FormBody.Builder();
@@ -100,6 +104,13 @@ public class FastAllColor {
                     insertSql(info);
                 } catch (SQLException e) {
                     e.printStackTrace();
+                }finally {
+                    runn =false ;
+                    try {
+                        fastAllColor.querydata();
+                    } catch ( Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 //                try {
 //                    querydata();
@@ -110,28 +121,30 @@ public class FastAllColor {
 
             @Override
             public void onError(int code, String error) {
-
+                runn =false ;
             }
         });
 
     }
 
-    private void querydata() throws SQLException {
+    private void querydata() throws  Exception {
 
-        ResultSet resultSet = fastMysql.prepareQuery().executeQuery(" select  *from fast_ticket   ORDER BY    201903200046 asc  ");
+        ResultSet resultSet = fastMysql.prepareQuery().executeQuery(" select DISTINCT(issue),resultInfo ,sh,location,alie FROM fast_ticket  ORDER BY issue asc ");
 
         try {
             List<DataTask.Info> infoList = new ArrayList<>();
             while (resultSet.next()) {
                 DataTask.Info info = new DataTask.Info();
-                info.order = resultSet.getString(2);
-                info.number = resultSet.getString(3);
-                info.periods = resultSet.getString(4);
-                info.location = resultSet.getInt(5);
-                info.detail = resultSet.getString(6);
-                info.date = resultSet.getString(7);
+                info.periods = resultSet.getString(1);
+                info.number = resultSet.getString(2);
+                info.detail = resultSet.getString(3);
+                info.location = resultSet.getInt(4);
+                info.alie = resultSet.getString(5);
+                info.date = info.periods.substring(0,8);
+                info.index =  Integer.parseInt(info.periods .substring(7,info.periods.length()));
                 infoList.add(info);
             }
+            resultSet.close();
 //            System.err.println(infoList.size() + "  \n" + infoList.toString());
             match01(infoList);
         } catch (SQLException e) {
@@ -145,7 +158,7 @@ public class FastAllColor {
         List<ArticleAnalyze.MatchInfo> matchInfos = new ArrayList<>();
         for (int i = 0; i < infoList.size() - 1; i++) {
             DataTask.Info info = infoList.get(i);
-            if (info.location == 4 && !info.date.equals(20190314)) {
+            if (info.location == 6  ) {
                 for (int j = i + 1; j < infoList.size(); j++) {
                     DataTask.Info info1 = infoList.get(j);
                     if (info1.location == 4) {
@@ -184,7 +197,7 @@ public class FastAllColor {
                 }
             }
         }
-
+        Collections.sort( matchInfos);
         System.err.println("日期                第一期号     第二期号       数字         描述      间隔          包含");
         for (ArticleAnalyze.MatchInfo info : matchInfos) {
             if (Long.parseLong(info.info2.date) > Long.parseLong(info.info1.date))
@@ -192,7 +205,10 @@ public class FastAllColor {
 
             System.err.println(info.info2.date + "       " + info.info1.periods + " - " + info.info2.periods + "      " + info.info2.number + "       " + info.info2.detail + "       " + info.interval + "       " + logMap(info));
         }
-
+        Collections.sort( matchInfos);
+        for (ArticleAnalyze.MatchInfo matchInfo : matchInfos) {
+            System.err.println( matchInfo.toString());
+        }
     }
 
 
@@ -250,6 +266,7 @@ public class FastAllColor {
                 String string = resultSet.getString(4);
                 for (int i = 0; i < info.data.data.list.size(); i++) {
                     Content content = info.data.data.list.get(i);
+                  
                     if (content.issue.equals(string)) {
                         info.data.data.list.remove(content);
                         i--;
@@ -259,7 +276,10 @@ public class FastAllColor {
         resultSet.close();
         for (Content content : info.data.data.list) {
             try {
+                content.openingTime=new SimpleDateFormat("yyyyMMdd HH:mm:ss").format(new Date(content.openingTime));
                 content.resultInfo = content.resultInfo.replace(",", "");
+                content.location = CoreMath.mth(content.resultInfo)-1 ;
+                content.alie = CoreMath.alaie( content.location );
                 fastMysql.insertData(iinsert, content);
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -359,6 +379,9 @@ public class FastAllColor {
         String sw;//	大双
         String ww;//	小单
         String zs;//	半顺
+        String alie;
+        int location;
+        
 
         @Override
         public String toString() {

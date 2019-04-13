@@ -19,7 +19,7 @@ import java.util.TimerTask;
 public class SubWeb_VR_1_1 implements Runnable {
 
     private static String url = "https://numbers.videoracing.com/analy_11_1.aspx?SortType=desc&DType=Analy100";
-//    private static String url = "https://numbers.videoracing.com/analy_11_1.aspx?SortType=desc&DType=Lastest3Day";
+    //    private static String url = "https://numbers.videoracing.com/analy_11_1.aspx?SortType=desc&DType=Lastest3Day";
     private final TestMysql testMysql;
     private final VR1_1Insert vr1_1Insert;
 
@@ -44,7 +44,8 @@ public class SubWeb_VR_1_1 implements Runnable {
                     return;
                 running = true;
                 try {
-                    doSubVR_1_1();
+
+                    saveDataInfo(doSubVR_1_1());
                 } catch (IOException e) {
 
                 } finally {
@@ -55,7 +56,7 @@ public class SubWeb_VR_1_1 implements Runnable {
 
     }
 
-    private void doSubVR_1_1() throws IOException {
+    public static List<DataTask.Info> doSubVR_1_1() throws IOException {
 
         SubWebInfo[] webInfoS = new SubWebInfo[1];
 
@@ -66,7 +67,7 @@ public class SubWeb_VR_1_1 implements Runnable {
 
         String body = Jsoup.connect(url).get().outerHtml();
         List<List> lists = SubwebUtil.subWeb(body, webInfoS);
-        System.err.println(lists.toString());
+        Out.e(lists.toString());
 
         List<DataTask.Info> dataInf0S = new ArrayList<>();
         for (List list : lists) {
@@ -87,16 +88,17 @@ public class SubWeb_VR_1_1 implements Runnable {
                     int mth = CoreMath.mth(info.number);
                     info.location = mth - 1;
                     info.detail = CoreMath.detail(info.location);
-                    info.niuniu =  NiuNIuMatch.niuniuString(info.number);
+                    info.niuniu = NiuNIuMatch.niuniuString(info.number);
                     info.alie = CoreMath.alaie(info.location);
                     dataInf0S.add(info);
                 }
             }
         }
-        saveDataInfo(dataInf0S);
+        return dataInf0S;
+
     }
 
-    private void saveDataInfo(List<DataTask.Info> dataInf0S) {
+    private  void saveDataInfo(List<DataTask.Info> dataInf0S) {
         if (dataInf0S == null)
             return;
         for (DataTask.Info dataInf : dataInf0S) {

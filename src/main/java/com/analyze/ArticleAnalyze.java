@@ -5,6 +5,7 @@ import com.TestMysql;
 import com.time.MyTimerTask;
 import com.time.TicketTime;
 import com.ui.OutUi;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -220,7 +221,7 @@ public class ArticleAnalyze {
     }
 
 
-    public static class MatchInfo {
+    public static class MatchInfo implements Comparable<MatchInfo> {
         public DataTask.Info info1;
         public DataTask.Info info2;
         public int interval;
@@ -229,11 +230,16 @@ public class ArticleAnalyze {
         @Override
         public String toString() {
             return "MatchInfo{" +
-                    "info1=" + info1 +
-                    ", info2=" + info2 +
                     ", interval=" + interval +
+                    " info1=" + info1 +
+                    ", info2=" + info2 +
                     ", containMap=" + containMap +
                     '}';
+        }
+
+        @Override
+        public int compareTo(@NotNull MatchInfo o) {
+            return   interval-o.interval ;
         }
     }
 }

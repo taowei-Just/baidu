@@ -14,7 +14,9 @@ public class Elementutil {
 
     public void clickId(String id) {
         try {
-            chromeDriver.findElement(By.id(id)).click();
+            WebElement element = chromeDriver.findElement(By.id(id));
+            if (element.isDisplayed())
+            element.click();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,28 +43,33 @@ public class Elementutil {
         WebElement element;
         try {
             element = chromeDriver.findElement(By.className(game));
-            System.out.println(element.getAttribute("class"));
+            if (element.isDisplayed())
             element.click();
         } catch (Exception e) {
-            Out.e(tag, "click error:" + e.toString());
+            Out.e(tag, "clickClass error:" + e.toString());
 
         }
     }
 
     public void sendTextByClass(String className, String text) {
         try {
-            chromeDriver.findElement(By.className(className)).sendKeys(text);
+            WebElement element = chromeDriver.findElement(By.className(className));
+            if (element.isDisplayed())
+                element.sendKeys(text);
         } catch (Exception e) {
             e.printStackTrace();
-            Out.e(tag, "click error:" + e.toString());
+            Out.e(tag, "sendTextByClass error:" + e.toString());
         }
     }
 
     public void clickPath(String s) {
         try {
-            chromeDriver.findElement(By.xpath(s)).click();
+
+            WebElement element = chromeDriver.findElement(By.xpath(s));
+            if (element.isDisplayed())
+                element.click();
         } catch (Exception e) {
-            Out.e(tag, "click error:" + e.toString());
+            Out.e(tag, "clickPath error:" + e.toString());
 
         }
     }
@@ -71,7 +78,7 @@ public class Elementutil {
         try {
             chromeDriver.findElement(By.id(s)).sendKeys(s1);
         } catch (Exception e) {
-            Out.e(tag, "click error:" + e.toString());
+            Out.e(tag, "sendTextByid error:" + e.toString());
 
         }
     }
@@ -80,7 +87,7 @@ public class Elementutil {
         try {
             chromeDriver.findElement(By.cssSelector(s)).click();
         } catch (Exception e) {
-            Out.e(tag, "click error:" + e.toString());
+            Out.e(tag, "clickCssS error:" + e.toString());
         }
     }
 
@@ -99,7 +106,6 @@ public class Elementutil {
     public void waitDialog(RemoteWebDriver chromeDriver) {
         while (true) {
             try {
-
                 Out.e("等待弹窗消失");
                 WebElement time = chromeDriver.findElement(By.className("time"));
                 String hour = time.findElement(By.id("hour")).getText();
@@ -133,10 +139,10 @@ public class Elementutil {
                     }
                 }
             } catch (Exception e) {
-                
+
             }
             try {
-                Thread.sleep(1*1000);
+                Thread.sleep(1 * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

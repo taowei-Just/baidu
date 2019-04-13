@@ -40,6 +40,7 @@ public class TicketInfo {
     public int expectW =10 ;
     public double rongDuanPre = 1;
     public double decreasP =0.005;
+    public double zhisunMoney =money*stopLoss;
 
     String logPath ;
 

@@ -5,7 +5,9 @@ import baidu.Ecai.Main;
 import baidu.Ecai.MatchWin;
 import baidu.bean.PourInfo;
 import baidu.utils.Out;
+import com.CoreMath;
 import com.TestMysql;
+import matchore.MatchCore;
 import subweb.subRun.Sql.VR1_1Insert;
 
 import java.sql.ResultSet;
@@ -118,9 +120,9 @@ public class MatchLocalDate {
 //                Out.e(next+" 当期亏损："  +pourInfos.get(pourInfos.size()-1).total* doPour_1_1.dubS[info3.dub]);
             }
 
-            winMoney +=  pourInfo.win * doPour_1_1.dubS[info3.dub]*integer;
+            winMoney +=  pourInfo.win * MatchCore.dubS[info3.dub]*integer;
 
-            Out.e( integer+" 当期总投入："  + pourInfo.total * doPour_1_1.dubS[info3.dub]  +" 当期盈利："+ pourInfo.win * doPour_1_1.dubS[info3.dub]+ " 同类型 盈利 " + pourInfo.win * doPour_1_1.dubS[info3.dub] *integer);
+            Out.e( integer+" 当期总投入："  + pourInfo.total * MatchCore.dubS[info3.dub]  +" 当期盈利："+ pourInfo.win * MatchCore.dubS[info3.dub]+ " 同类型 盈利 " + pourInfo.win * MatchCore.dubS[info3.dub] *integer);
             
         }
 

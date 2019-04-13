@@ -166,7 +166,7 @@ public class FastMysql {
 
     public PreparedStatement prepareInsert() throws SQLException {
 
-        return con.prepareStatement("insert into " + tableName + " (  resultInfo,sh,nn,issue,openingTime )values(?,?,?,?,?)");
+        return con.prepareStatement("insert into " + tableName + " (  resultInfo,sh,nn,issue,openingTime ,location ,alie)values(?,?,?,?,?,?,?)");
     }
 
     public PreparedStatement prepareInsert(String sql) throws SQLException {

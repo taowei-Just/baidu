@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MatchWin {
-    private double[] mults = new double[]{9850, 218, 109, 0, 13.68, 9.12, 1.95, 3.391};
+     public static double[] mults = new double[]{9850, 218, 109, 0, 13.68, 9.12, 1.95, 3.391};
 
     private static MatchWinInfo matchliangduiWinInfo;
     private static MatchWinInfo danduiWinInfo;
@@ -68,11 +68,12 @@ public class MatchWin {
                 if (!info.useDefaultPresent)
                     matchInfo.setPresent(info.precent);
                     matchInfo.setMaxMoney(info.money)
-                        .setZhiSunP(info.stopLoss) 
-                        .setFirstM(info.first)
+                        .setZhiSunP(info.stopLoss)
+                            .setFirstM(info.first)
                         .setAssign(info.expectW)
                     .setRongduaPre(info.rongDuanPre)
-                    .setDecreasP(info.decreasP);
+                    .setDecreasP(info.decreasP)
+            .setZhisunMoney(info.zhisunMoney);
                 break;
             }
         }
@@ -108,7 +109,7 @@ public class MatchWin {
 //                return -1;
 //}
             if (useRongd) {
-                if (total / matchWinInfo.maxMoney >= matchWinInfo.rongduaPre || matchWinInfo.rongduanMoney > 0 ? total >= matchWinInfo.rongduanMoney : false) {
+                if ((total / matchWinInfo.maxMoney >= matchWinInfo.rongduaPre || matchWinInfo.rongduanMoney > 0 ? total >= matchWinInfo.rongduanMoney : false ) ) {
                     Out.d(" 触发熔断 " + (i + 1) + "熔断值：" + matchWinInfo.rongduanMoney + ":" + matchWinInfo.rongduaPre * matchWinInfo.maxMoney + " _ 预计亏损：" + (total - v));
                     return doubles;
                 }
@@ -118,7 +119,7 @@ public class MatchWin {
             double v1 = total / matchWinInfo.maxMoney;
 
             if (v1 > matchWinInfo.zhiSunP || (matchWinInfo.zhisunMoney > 0 ? total > matchWinInfo.zhisunMoney : false)) {
-//                Out.d(" 到达减损 " + i + " _ " + v1);
+                Out.d(" 到达减损 " + i + " _ " + v1);
 
                 zhisunmode = true;
                 present -= matchWinInfo.decreasP;
@@ -132,8 +133,8 @@ public class MatchWin {
             pourInfo.win = (v * mult) - total;
             pourInfo.total = total;
             doubles.add(pourInfo);
-//            Out.d("计算第：" + (i + 1) + "项 值为：" + v + " total " + total + " present " + pv * 100 + "%");
-//            Out.d(" 验证 " + ((v * mult) - total));
+            Out.d("计算第：" + (i + 1) + "项 值为：" + v + " total " + total + " present " + pv * 100 + "%");
+            Out.d(" 验证 " + ((v * mult) - total));
 
         }
         return doubles;

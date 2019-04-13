@@ -9,6 +9,7 @@ import niuniu.NiuNIuMatch;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -426,8 +427,7 @@ public class DataTask {
         }
     }
 
-    public static class Info {
-
+    public static class Info  implements Comparable<Info>{
         public  int index ;
         public String order;
         public String number;
@@ -438,15 +438,18 @@ public class DataTask {
         public String niuniu;
         public String alie;
 
-
         @Override
         public String toString() {
             return  
                     "  " + periods + '\'' +
-                    " '" + order + '\'' +
                     ",  " + number + '\'' +
                     ", " + detail + '\'' +
-                    ",  '[ " + alie  + " ]}   " + "       location  "+location;
+                    ", [ " + alie  + " ]}   " + "       location  "+location;
+        }
+
+        @Override
+        public int compareTo(@NotNull Info o) {
+            return (int) (Long.parseLong(periods)-Long.parseLong(o.periods));
         }
     }
 }

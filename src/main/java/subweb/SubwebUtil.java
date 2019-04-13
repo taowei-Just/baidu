@@ -76,7 +76,7 @@ public class SubwebUtil {
         System.err.println("subWeb_"+str+"\n ");
  
             SubWebInfo webInfo = webInfoS[0];
-            System.err.println(webInfo.toString());
+//            System.err.println(webInfo.toString());
             List<String> subUtil = PattenUtil.getSubUtil(str, webInfo.startD + "(.*?)" + webInfo.endD, webInfo.coner);
         if (subUtil==null)
             return results;

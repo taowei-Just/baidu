@@ -2,11 +2,7 @@ package baidu.Ecai.iml;
 
 import baidu.bean.BettingRecord;
 import baidu.bean.PourInfo;
-import baidu.bean.TicketInfo;
 import baidu.bean.WinInfo;
-import baidu.utils.Elementutil;
-import baidu.utils.LogUtils;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,19 +15,8 @@ public interface IDoPour {
       String[] detailS = new String[]{"五条", "炸弹", "葫芦", "顺子", "三条", "两对", "单对", "散号"};
     //倍率
       double[] mults = new double[]{9850, 218, 109, 0, 13.68, 9.12, 1.95, 3.391};
-    //最优投注间隔期数
-      int[] indedeS = new int[]{200, 100, 50, 30, 15, 13, 3, 10};
-    // 最优间隔期间投注次数
-      int[] countS = new int[]{60, 30, 17, 7, 5, 3, 1, 3};
+ 
 
-    // 间隔提醒阈值
-      double[] thresholdS = new double[]{150, 60, 50, 20, 20, 13, 5, 10};
-    // 上衣次数据发送次数
-      double[] messAgeSends = new double[]{0, 0, 0, 0, 0, 0, 0, 0};
-
-    // 推送消息频次
-      double[] messSendF = new double[]{0, 0, 20, 10, 4, 2, 1, 1};
-      double[] dubS = new double[]{2.0, 1, 0.2, 0.1, 0.02};
     int maxIss = 1260;
     List<String> lisStrS = new ArrayList<>();
    
@@ -58,7 +43,7 @@ public interface IDoPour {
     void pour(int i, Long aLong, Double aDouble);
     boolean confirmPour(int i, Long aLong, Double aDouble, List<BettingRecord> bettingRecords);
     void waitMarketOpen();
-    void closeDialog();
+    boolean closeDialog();
     void cancellations();
     List<BettingRecord> getBettingRecords();
     BettingRecord matchBetting(String st) throws Exception;

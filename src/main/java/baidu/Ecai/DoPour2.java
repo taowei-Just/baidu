@@ -3,12 +3,14 @@ package baidu.Ecai;
 
 import baidu.bean.PourInfo;
 import baidu.bean.TicketInfo;
+import baidu.bean.WinInfo;
 import baidu.utils.CoreMath;
 import baidu.utils.Elementutil;
 import baidu.utils.LogUtils;
 import baidu.utils.Out;
 import com.PattenUtil;
 import com.runn.DataTask;
+import matchore.MatchCore;
 import niuniu.NiuNIuMatch;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
@@ -41,8 +43,8 @@ public class DoPour2 {
     // 间隔提醒阈值
     private double[] thresholdS = new double[]{150, 60, 50, 20, 20, 13, 5, 10};
     // 上衣次数据发送次数
-    private double[] messAgeSends = new double[]{0, 0, 0, 0, 0, 0, 0, 0}; 
-    
+    private double[] messAgeSends = new double[]{0, 0, 0, 0, 0, 0, 0, 0};
+
     // 推送消息频次
     private double[] messSendF = new double[]{0, 0, 20, 10, 4, 2, 1, 1};
 
@@ -95,48 +97,14 @@ public class DoPour2 {
 
     private void matchInfo(List<History> histories) {
         for (History his : histories)
-            matchInfo(his.number, his.issue);
+            MatchCore.matchInfo(hisMap, his.number, his.issue);
     }
 
-    private void matchInfo(String number, String issue) {
-        DataTask.Info info = new DataTask.Info();
-        info.number = number;
-        info.niuniu = NiuNIuMatch.matchNiu(info.number) + "";
-        info.periods = issue;
-        info.location = CoreMath.mth(number) - 1;
-        info.detail = detailS[info.location];
-        info.order = info.periods.substring(info.periods.length() - 3, info.periods.length());
-        info.date = issue.substring(0, 8);
-        saveHisMap(info);
-    }
-
-    private void saveHisMap(DataTask.Info info) {
-        if (hisMap.containsKey(info.location)) {
-            List<DataTask.Info> infos = hisMap.get(info.location);
-            boolean hava = false;
-            for (DataTask.Info datain : infos) {
-                if (datain.periods == info.periods) {
-                    hava = true;
-                    break;
-                }
-            }
-            if (!hava)
-                infos.add(info);
-        } else {
-            ArrayList<DataTask.Info> value = new ArrayList<>();
-            value.add(info);
-            hisMap.put(info.location, value);
-        }
-    }
-
-    private void matchInfo(String number) {
-        matchInfo(number, null);
-    }
 
     String lastIssue = "";
 
     private void loopSerch() {
-        Out.e(outInfo().toString());
+        Out.e(MatchCore.outInfo(hisMap).toString());
 
         while (true) {
             WinInfo winInfo = waitingIssue();
@@ -145,22 +113,13 @@ public class DoPour2 {
             if (winInfo.currentIssue.equals(lastIssue))
                 continue;
 
-            matchInfo(winInfo.Numner, winInfo.issue);
+            MatchCore.matchInfo(hisMap, winInfo.Numner, winInfo.issue);
             //得出每个梭哈的当前间隔
-            Map<Integer, DataTask.Info> infoMap = outInfo();
+            Map<Integer, DataTask.Info> infoMap = MatchCore.outInfo(hisMap);
             Out.e("" + infoMap.toString());
 
-            Set<Integer> keySet = infoMap.keySet();
-            for (Integer integer : keySet) {
-                DataTask.Info info = infoMap.get(integer);
-                long l = Long.valueOf(winInfo.currentIssue) - Long.valueOf(info.periods);
-                Out.e("[" + detailS[integer] + "]最近一次出现：" + info.periods + " 距离当前投注期数：" + l);
-                if (l -1>= thresholdS[integer] && messAgeSends[integer] != l) {
-                    sendNotifyMessage(integer, l, winInfo.currentIssue, info.periods);
-                }
-                messAgeSends[integer] = l;
-            }
-            bpttomPour(0 , 4, 1);
+           MatchCore. outMessage(info, winInfo, infoMap);
+            bpttomPour(0, 4, 1);
             Elementutil.wait_(3);
             cancellations();
             try {
@@ -170,6 +129,8 @@ public class DoPour2 {
             }
         }
     }
+
+
     private void cancellations() {
         List<BettingRecord> bettingRecordList = getBettingRecords();
         for (int i = 0; i < lisStrS.size(); i++) {
@@ -184,38 +145,7 @@ public class DoPour2 {
             }
         }
     }
-    private void sendNotifyMessage(Integer integer, long l, String currentIssue, String periods) {
-        // [监控提醒] 当前 [三条] 已经有[20]期未出现请留意，当前销售期数为[210051]上一次出现期数为 [20120212]
-        String msg = "账号 " + info.account + " [监控提醒]当前 [" + detailS[integer] + "] 已经有[" + (l-1) + "]期未出现了，敬请留意，当前销售期数为[" + currentIssue + "]上一次出现期数为 [" + periods + "]";
-        Main.pushAllMessage(msg);
-    }
 
-    private Map<Integer, DataTask.Info> outInfo() {
-        Map<Integer, DataTask.Info> maxInfoMap = new HashMap<>();
-        Iterator<Integer> iterator = hisMap.keySet().iterator();
-        while (iterator.hasNext()) {
-            Integer next = iterator.next();
-            List<DataTask.Info> infos = hisMap.get(next);
-            DataTask.Info info = getMaxInfo(infos);
-            maxInfoMap.put(next, info);
-        }
-
-        return maxInfoMap;
-    }
-
-    private DataTask.Info getMaxInfo(List<DataTask.Info> infos) {
-        DataTask.Info info = null;
-        for (int i = 0; i < infos.size(); i++) {
-            DataTask.Info info1 = infos.get(i);
-            if (info == null)
-                info = info1;
-            else {
-                if (Long.valueOf(info1.periods) > Long.valueOf(info.periods))
-                    info = info1;
-            }
-        }
-        return info;
-    }
 
     @NotNull
     private List<History> getHistories() {
@@ -407,24 +337,7 @@ public class DoPour2 {
         }
     }
 
-    static class WinInfo {
-        public String Numner;
-        public String issue;
-        public int wiState;
-        public int winInde;
-        public String currentIssue;
-
-        @Override
-        public String toString() {
-            return "WinInfo{" +
-                    "Numner='" + Numner + '\'' +
-                    ", issue='" + issue + '\'' +
-                    ", wiState=" + wiState +
-                    ", winInde=" + winInde +
-                    ", currentIssue='" + currentIssue + '\'' +
-                    '}';
-        }
-    }
+ 
 
     String lastlastissue = "";
 
@@ -598,6 +511,7 @@ public class DoPour2 {
         //2元
         elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[5]/div[1]/div[1]/div/ul/li[1]/a");
     }
+
     private void clickzhadan() {
         try {
             elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div[2]/div[27]/div[2]/button[2]");
