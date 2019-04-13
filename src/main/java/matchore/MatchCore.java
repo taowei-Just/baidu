@@ -502,4 +502,33 @@ public class MatchCore {
         }
     }
 
+    public static  void waitMarketOpen(TicketInfo info , WaitTimeCall call) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Out.e(info.tag, "关闭本次跟注 等待开盘");
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(System.currentTimeMillis());
+                Out.d(calendar.getTime().toString());
+                calendar.set(Calendar.HOUR_OF_DAY, Integer.valueOf(info.openMarket));
+                calendar.set(Calendar.MILLISECOND ,0);
+                Out.d(calendar.getTime().toString());
+                while (true) {
+                    if (System.currentTimeMillis() > calendar.getTimeInMillis()) {
+                        call.onTimeOpen(System.currentTimeMillis());
+                        return;
+                    }
+                  
+                    call.onNoTime(calendar.getTimeInMillis());
+                    try {
+                        Thread.sleep(1 * 1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+    }
+
 }

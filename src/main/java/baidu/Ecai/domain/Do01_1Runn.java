@@ -89,6 +89,7 @@ public class Do01_1Runn implements IDooRun {
                     i--;
                 }
             }
+            
             data = doPour.matchData(infos, 0);
             Out.e("6获取当前历史 距离  " + data);
             Out.e("7 匹配下注金额列表");

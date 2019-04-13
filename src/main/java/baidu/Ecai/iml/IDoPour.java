@@ -2,6 +2,7 @@ package baidu.Ecai.iml;
 
 import baidu.bean.BettingRecord;
 import baidu.bean.PourInfo;
+import baidu.bean.TicketInfo;
 import baidu.bean.WinInfo;
 
 import java.util.ArrayList;
@@ -42,7 +43,6 @@ public interface IDoPour {
     void operate(List<Long> issueLong, Map<Long, PourInfo> doubleMap);
     void pour(int i, Long aLong, Double aDouble);
     boolean confirmPour(int i, Long aLong, Double aDouble, List<BettingRecord> bettingRecords);
-    void waitMarketOpen();
     boolean closeDialog();
     void cancellations();
     List<BettingRecord> getBettingRecords();

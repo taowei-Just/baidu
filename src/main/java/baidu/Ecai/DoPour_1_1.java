@@ -12,6 +12,7 @@ import baidu.utils.Out;
 import com.PattenUtil;
 import com.runn.DataTask;
 import matchore.MatchCore;
+import matchore.WaitTimeCall;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -356,7 +357,19 @@ public class DoPour_1_1 implements IDoPour {
         System.out.println(substring);
         if (maxIss - Long.valueOf(substring) < info.minIss && maxIss !=-1) {
             webDriver.quit();
-            waitMarketOpen();
+            MatchCore.waitMarketOpen(info, new WaitTimeCall() {
+                @Override
+                public void onTimeOpen(long timeInMillis) {
+                    Out.e("开盘了 》》");
+                    new Main().start(info);
+                    Main.pushAllMessage("开盘时间到，启动[" + detailS[info.indede] + "]下注 当前时间" + new Date(System.currentTimeMillis()) + "");
+                }
+
+                @Override
+                public void onNoTime(long timeInMillis) {
+                    Out.e("》》等待开盘 " + new Date(System.currentTimeMillis()).toString());
+                }
+            });
             return true;
         }
         return false;
@@ -431,36 +444,6 @@ public class DoPour_1_1 implements IDoPour {
 
         }
         return have;
-    }
-
-    public void waitMarketOpen() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Out.e(info.tag, "关闭本次跟注 等待开盘");
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(System.currentTimeMillis());
-                Out.d(calendar.getTime().toString());
-                calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 1);
-                calendar.set(Calendar.HOUR_OF_DAY, Integer.valueOf(info.openMarket));
-                Out.d(calendar.getTime().toString());
-                while (true) {
-                    if (System.currentTimeMillis() > calendar.getTimeInMillis()) {
-                        Out.e("开盘了 》》");
-                        new Main().start(info);
-                        Main.pushAllMessage("开盘时间到，启动[" + detailS[info.indede] + "]下注 当前时间" + new Date(System.currentTimeMillis()) + "");
-                        return;
-                    }
-                    Out.e("》》等待开盘 " + new Date(System.currentTimeMillis()).toString());
-                    try {
-                        Thread.sleep(10 * 1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-
     }
 
     public boolean closeDialog() {
@@ -915,7 +898,7 @@ public class DoPour_1_1 implements IDoPour {
 
     public int matchData(List<DataTask.Info> infos, int z) {
         int index = MatchCore.indedeS[info.indede];
-        for (int i = 0; i < infos.size(); i++) {
+        for (int i = infos.size()-1; i>=0; i--) {
             int mth = CoreMath.mth(infos.get(i).number) - 1;
             if (mth == info.indede) {
                 index = i;
