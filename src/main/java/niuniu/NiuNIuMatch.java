@@ -114,7 +114,7 @@ public class NiuNIuMatch {
                                 num += numbers[l];
                             }
                         }
-                        System.err.println(""+num);
+              
                         return niuS[num % 10];
                     }
                 }

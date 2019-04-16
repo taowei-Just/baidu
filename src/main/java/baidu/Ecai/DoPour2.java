@@ -9,6 +9,7 @@ import baidu.utils.Elementutil;
 import baidu.utils.LogUtils;
 import baidu.utils.Out;
 import com.PattenUtil;
+import com.TestMysql;
 import com.runn.DataTask;
 import matchore.MatchCore;
 import niuniu.NiuNIuMatch;
@@ -19,6 +20,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import static baidu.Ecai.domain.Do01_1Runn.message;
 
 /**
  * 保障本金不亏
@@ -31,6 +34,7 @@ import java.util.*;
 
 public class DoPour2 {
 
+    private static TestMysql testMysql;
     // 描述
     private String[] detailS = new String[]{"五条", "炸弹", "葫芦", "顺子", "三条", "两对", "单对", "散号"};
     //倍率
@@ -61,6 +65,7 @@ public class DoPour2 {
 
         DoPour2 doPour = new DoPour2(null, new Main.Info());
         doPour.info.tag = "test_match";
+        testMysql = new TestMysql("ticket_data_vr_1_1");
 
 
     }
@@ -71,6 +76,8 @@ public class DoPour2 {
         this.info = info;
         elementutil = new Elementutil(webDriver);
         logUtils = new LogUtils("e:\\Temp\\log\\" + new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())) + "\\" + getClass().getSimpleName() + "" + info.tag + ".txt");
+        
+     
     }
 
     Map<Integer, List<DataTask.Info>> hisMap = new HashMap<>();
@@ -112,7 +119,10 @@ public class DoPour2 {
                 continue;
             if (winInfo.currentIssue.equals(lastIssue))
                 continue;
-
+            if (winInfo.winInde <5){
+                message("大奖["+ MatchCore.detailS[winInfo.winInde]+"] 出现了！历史出现最大间隔["+ MatchCore.maxTotal(testMysql, info.indede)+"]敬请关注！");
+            }
+            
             MatchCore.matchInfo(hisMap, winInfo.Numner, winInfo.issue);
             //得出每个梭哈的当前间隔
             Map<Integer, DataTask.Info> infoMap = MatchCore.outInfo(hisMap);
@@ -123,7 +133,7 @@ public class DoPour2 {
             Elementutil.wait_(3);
             cancellations();
             try {
-                Thread.sleep(5 * 1000);
+                Thread.sleep(10 * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -1,5 +1,6 @@
 package com;
 
+import baidu.utils.Out;
 import com.runn.DataTask;
 
 import java.sql.*;
@@ -176,8 +177,8 @@ public class TestMysql {
     public ResultSet queryData(String query) {
 
         try {
+//            Out.d(query);
             return statement.executeQuery(query);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

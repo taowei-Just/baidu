@@ -8,7 +8,7 @@ public class M0401_JianK {
     public static void main(String[] args) {
 
         TicketInfo info2 = new TicketInfo();
-        info2.account = "wtw960401";
+        info2.account = "wtw9604";
         info2.password = "953934cap";
         info2.ticketKind = -1;
         info2.tag = "_jian_kong_";

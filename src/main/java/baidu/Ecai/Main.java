@@ -9,10 +9,14 @@ import cn.jiguang.common.resp.APIConnectionException;
 import cn.jiguang.common.resp.APIRequestException;
 import cn.jpush.api.push.PushClient;
 import jiguang.jiguangtest.JpushTest;
+import matchore.MatchCore;
+import matchore.WaitTimeCall;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static jiguang.jiguangtest.JpushTest.appKey;
@@ -74,7 +78,21 @@ public class Main {
     }
 
     public void start(TicketInfo info) {
-        new Thread(new MainRunn(info, this)).start();
+
+        MatchCore.waitMarketOpen(info, new WaitTimeCall() {
+            @Override
+            public void onTimeOpen(long timeInMillis) {
+                Out.e(" 已开盘  " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(timeInMillis)));
+
+                new Thread(new MainRunn(info, Main.this)).start();
+            }
+
+            @Override
+            public void onNoTime(long timeInMillis) {
+                Out.e(" 等待开盘 开盘时间：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(timeInMillis)));
+            }
+        });
+       
     }
 
 

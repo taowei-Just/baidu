@@ -34,7 +34,7 @@ public class DoPour_1_1 implements IDoPour {
     public int pourCount = 0;
     List<String> windowIds;
 
-    public DoPour_1_1(RemoteWebDriver webDriver, TicketInfo info, List<String> windowIds) {
+    public DoPour_1_1(RemoteWebDriver webDriver, TicketInfo info, List<String> windowIds) throws Exception {
         this.webDriver = webDriver;
         this.info = info;
         this.windowIds = windowIds;
@@ -43,7 +43,7 @@ public class DoPour_1_1 implements IDoPour {
         init();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         DoPour_1_1 doPour = new DoPour_1_1(null, new Main.Info());
         doPour.info.tag = "test_match";
@@ -51,7 +51,7 @@ public class DoPour_1_1 implements IDoPour {
 
     }
 
-    public DoPour_1_1(RemoteWebDriver webDriver, TicketInfo info) {
+    public DoPour_1_1(RemoteWebDriver webDriver, TicketInfo info) throws Exception {
         this(webDriver, info, new ArrayList<>());
     }
 
@@ -213,20 +213,9 @@ public class DoPour_1_1 implements IDoPour {
     public List<Long> mathPriods(String currentIssue, int inde) {
         Long aLong = Long.valueOf(currentIssue);
         List<Long> issueLong = new ArrayList<>();
-        if (inde > -1 && MatchCore.indedeS[info.indede] - inde > 0) {
-            for (int i = 0; i < MatchCore.countS[info.indede]; i++) {
-                long e = new Random().nextInt(MatchCore.indedeS[info.indede] - inde);
-                Out.e(info.tag, e + "");
-                if (!issueLong.contains(aLong + e)) {
-                    issueLong.add(aLong + e);
-                }
-            }
-            Out.e(info.tag, issueLong.toString());
-        } else {
-            inde = MatchCore.indedeS[info.indede];
-        }
+        inde = MatchCore.indedeS[info.indede]-inde > 0?MatchCore.indedeS[info.indede]-inde :0;
         for (int i = 0; i < 100; i++) {
-            issueLong.add(aLong + i + MatchCore.indedeS[info.indede] - inde);
+            issueLong.add(aLong + i + inde);
         }
         for (int i = 0; i < issueLong.size() - 1; i++) {
             for (int j = i + 1; j < issueLong.size(); j++) {
@@ -388,7 +377,6 @@ public class DoPour_1_1 implements IDoPour {
         WinInfo winInfo;
         while (true) {
             winInfo = waitingIssue();
-
             // 没有当前下注期号继续查询
             if (winInfo.currentIssue == null)
                 continue;
@@ -857,54 +845,52 @@ public class DoPour_1_1 implements IDoPour {
     }
 
     @Override
-    public void init() {
-        try {
-
+    public void init() throws Exception {
+     
             WebElement element = webDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div[2]/div/ul/li[3]/a/span"));
             System.err.println(element.getText());
             if (element.getText().contains("VR彩票"))
                 element.click();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        webDriver.close();
 
-        Elementutil.wait_(1);
-        Set<String> windowHandles = webDriver.getWindowHandles();
-        Iterator<String> iterator = windowHandles.iterator();
-        while (iterator.hasNext()) {
-            String next = iterator.next();
-            if (!windowIds.contains(next))
-                windowIds.add(next);
-        }
+            webDriver.close();
 
-        webDriver.switchTo().window(windowIds.get(windowIds.size() - 1));
+            Elementutil.wait_(1);
+            Set<String> windowHandles = webDriver.getWindowHandles();
+            Iterator<String> iterator = windowHandles.iterator();
+            while (iterator.hasNext()) {
+                String next = iterator.next();
+                if (!windowIds.contains(next))
+                    windowIds.add(next);
+            }
 
-        System.err.println("当前界面id：" + webDriver.getWindowHandle());
-        Elementutil.wait_(1);
-        elementutil.waitDialog(webDriver);
+            webDriver.switchTo().window(windowIds.get(windowIds.size() - 1));
 
-        Actions actions = new Actions(webDriver);
-        actions.moveToElement(webDriver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div[2]/div/div[1]/div/div/div[1]/a[21]")));
-        elementutil.clickPath("/html/body/div[2]/div/div[1]/div[2]/div/div[1]/div/div/div[1]/a[21]");
+            System.err.println("当前界面id：" + webDriver.getWindowHandle());
+            Elementutil.wait_(1);
+            elementutil.waitDialog(webDriver);
 
-        elementutil.clickId("regularBetType");
+            Actions actions = new Actions(webDriver);
+            actions.moveToElement(webDriver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div[2]/div/div[1]/div/div/div[1]/a[21]")));
+            elementutil.clickPath("/html/body/div[2]/div/div[1]/div[2]/div/div[1]/div/div/div[1]/a[21]");
 
-        elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[1]/ul/li[14]/a");
-        elementutil.clickPath("//*[@id=\"NiuNiuStud\"]");
+            elementutil.clickId("regularBetType");
+
+            elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[4]/div[2]/div[1]/div[1]/ul/li[14]/a");
+            elementutil.clickPath("//*[@id=\"NiuNiuStud\"]");
 
     }
 
 
     public int matchData(List<DataTask.Info> infos, int z) {
         int index = MatchCore.indedeS[info.indede];
+        int in =0 ;
         for (int i = infos.size()-1; i>=0; i--) {
-            int mth = CoreMath.mth(infos.get(i).number) - 1;
-            if (mth == info.indede) {
-                index = i;
-                return index;
+            if (infos.get(i).location == info.indede) {
+                Out.e(infos.get(i).toString());
+                return in;
             }
+            in++;
         }
-        return index;
+        return in;
     }
 }

@@ -35,7 +35,6 @@ public class M960424_San_Tiao_1_1 {
 //        List<PourInfo> pourInfos = getDanduiPourInfos(info01);
 
         TicketInfo info = creatTicketInfo(4, 5, 0.35, 8000, 4, 1);
-        
         new Main().start(info);
     }
 }

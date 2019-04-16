@@ -5,34 +5,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a08f6f3a-e764-49aa-8f93-437ff9e0afa5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/matchore/WaitTimeCall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Test/Match_Test02.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/baidu/Ecai/domain/Do01_1RunnJK.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/baidu/utils/MapUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/videoracing/bean/HrefInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/videoracing/main/TestMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour2$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour2$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour2$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour2$BettingRecord.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour2$BettingRecord.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour2$History.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour2$History.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour2$WinInfo.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour_1_1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour_1_1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour_1_1$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour_1_1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour_1_1$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour_1_1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/DoPour_1_1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/Main$Info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/Main$Info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/MainRunn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/MainRunn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/MatchWin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/MatchWin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/domain/Do01_1Runn$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/domain/Do01_1Runn$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/domain/Do01_1Runn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/domain/Do01_1Runn.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/iml/IDoPour.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/Ecai/iml/IDoPour.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/fast/FastAllColor$Content.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/fast/FastAllColor$Content.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/fast/FastAllColor$Data_01.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/fast/FastAllColor$Data_01.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/fast/FastAllColor$Data_ii.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/fast/FastAllColor$Data_ii.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/fast/FastAllColor$Gather.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/fast/FastAllColor$Gather.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/fast/FastAllColor$Info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/fast/FastAllColor$Info.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/fast/FastAllColor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/fast/FastAllColor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/M960424_San_Tiao_1_1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/M960424_San_Tiao_1_1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/baidu/bean/MatchWinInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/baidu/bean/MatchWinInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/TestMysql.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/TestMysql.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/TicketInfoInsert.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/TicketInfoInsert.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/runn/DataTask$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/runn/DataTask$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/runn/DataTask$Info.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/runn/DataTask$Info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/runn/DataTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/runn/DataTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/runn/MatchLocalDate$DataContinInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/runn/MatchLocalDate$DataContinInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/runn/MatchLocalDate$DataInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/runn/MatchLocalDate$DataInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/runn/MatchLocalDate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/runn/MatchLocalDate.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/matchore/MatchCore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/matchore/MatchCore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/niuniu/NiuNIuMatch.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/niuniu/NiuNIuMatch.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/subweb/SubwebUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/subweb/SubwebUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/subweb/subRun/SubWebInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/subweb/subRun/SubWebInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/subweb/subRun/SubWeb_VR_1_1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/subweb/subRun/SubWeb_VR_1_1$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/subweb/subRun/SubWeb_VR_1_1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/subweb/subRun/SubWeb_VR_1_1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour_1_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour_1_1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/baidu/Ecai/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/baidu/Ecai/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/baidu/Ecai/MainRunn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/baidu/Ecai/MainRunn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/baidu/Ecai/MatchWin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/baidu/Ecai/MatchWin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/baidu/Ecai/domain/Do01_1Runn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/baidu/Ecai/domain/Do01_1Runn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/baidu/Ecai/iml/IDoPour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/baidu/Ecai/iml/IDoPour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/baidu/M0401_JianK.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/baidu/M0401_JianK.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/baidu/M960424_San_Tiao_1_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/baidu/M960424_San_Tiao_1_1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/baidu/bean/MatchWinInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/baidu/bean/MatchWinInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/TestMysql.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TestMysql.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/TicketInfoInsert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/TicketInfoInsert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/runn/DataTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/runn/DataTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/runn/MatchLocalDate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/runn/MatchLocalDate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/matchore/MatchCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/matchore/MatchCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/niuniu/NiuNIuMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/niuniu/NiuNIuMatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/subweb/SubwebUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/subweb/SubwebUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/subweb/subRun/SubWebInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/subweb/subRun/SubWebInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/subweb/subRun/SubWeb_VR_1_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/subweb/subRun/SubWeb_VR_1_1.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -91,16 +117,16 @@
     <session id="669287909">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="20" />
+          <entry key="project.closed" value="24" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.24" value="3" />
           <entry key="project.open.time.25" value="2" />
-          <entry key="project.open.time.26" value="2" />
-          <entry key="project.open.time.27" value="4" />
-          <entry key="project.open.time.28" value="3" />
+          <entry key="project.open.time.26" value="3" />
+          <entry key="project.open.time.27" value="5" />
+          <entry key="project.open.time.28" value="4" />
           <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.32" value="2" />
@@ -108,26 +134,27 @@
           <entry key="project.open.time.36" value="1" />
           <entry key="project.open.time.37" value="2" />
           <entry key="project.open.time.38" value="1" />
+          <entry key="project.open.time.56" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="32" />
+          <entry key="project.opened" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="bat" value="1" />
           <entry key="class" value="9" />
-          <entry key="gradle" value="10" />
-          <entry key="java" value="480" />
+          <entry key="gradle" value="11" />
+          <entry key="java" value="567" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="9" />
-          <entry key="Groovy" value="10" />
-          <entry key="JAVA" value="480" />
+          <entry key="Groovy" value="11" />
+          <entry key="JAVA" value="567" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
@@ -135,13 +162,13 @@
         <counts>
           <entry key="dummy" value="101" />
           <entry key="gradle" value="3" />
-          <entry key="java" value="38640" />
+          <entry key="java" value="44111" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="3" />
-          <entry key="JAVA" value="38640" />
+          <entry key="JAVA" value="44111" />
           <entry key="PLAIN_TEXT" value="101" />
         </counts>
       </usages-collector>
@@ -152,13 +179,108 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/matchore/MatchCore.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/subweb/subRun/SubWeb_VR_1_1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4090">
-              <caret line="513" column="52" selection-start-line="513" selection-start-column="52" selection-end-line="513" selection-end-column="52" />
+            <state relative-caret-position="136">
+              <caret line="112" column="33" lean-forward="true" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/iml/IDoPour.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/domain/Do01_1Runn.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="413">
+              <caret line="161" column="31" selection-start-line="161" selection-start-column="31" selection-end-line="161" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/domain/Do01_1RunnJK.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="138" column="25" lean-forward="true" selection-start-line="138" selection-start-column="25" selection-end-line="138" selection-end-column="25" />
+              <folding>
+                <element signature="e#4846#4847#0" expanded="true" />
+                <element signature="e#4885#4886#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour_1_1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="26">
+              <caret line="461" column="16" selection-start-line="461" selection-start-column="16" selection-end-line="461" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/baidu/M0401_JianK.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/matchore/MatchCore.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="526" column="24" selection-start-line="526" selection-start-column="24" selection-end-line="526" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#matchWinMoney#0;class#MatchCore#0" />
+                <element signature="method#dynamicIndes#0;class#MatchCore#0" />
+                <element signature="method#matchWin#0;class#MatchCore#0" />
+                <element signature="method#matchAssign#0;class#MatchCore#0" />
+                <element signature="method#getV#0;class#MatchCore#0" />
+                <element signature="method#start#0;class#MatchCore#0" />
+                <element signature="method#matchInfo#1;class#MatchCore#0" />
+                <element signature="method#saveHisMap#0;class#MatchCore#0" />
+                <element signature="method#getMaxInfo#0;class#MatchCore#0" />
+                <element signature="method#sendNotifyMessage#0;class#MatchCore#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/baidu/bean/TicketInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/MainRunn.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="158" column="73" lean-forward="true" selection-start-line="158" selection-start-column="73" selection-end-line="158" selection-end-column="73" />
+              <folding>
+                <element signature="e#5530#5664#0" />
               </folding>
             </state>
           </provider>
@@ -169,8 +291,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -727,18 +849,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/baidu/M04_Liang_Dui.java" />
-        <option value="$PROJECT_DIR$/src/main/java/baidu/M0401_Shan_Hao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/baidu/M0401_JianK.java" />
-        <option value="$PROJECT_DIR$/src/main/java/baidu/utils/Out.java" />
-        <option value="$PROJECT_DIR$/src/main/java/jiguang/jiguangtest/JpushTest.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/TicketInfoInsert.java" />
-        <option value="$PROJECT_DIR$/src/main/java/subweb/subRun/SubWebInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/TestMysql.java" />
         <option value="$PROJECT_DIR$/src/main/java/subweb/subRun/Sql/VR1_1Insert.java" />
-        <option value="$PROJECT_DIR$/src/main/java/niuniu/NiuNIuMatch.java" />
         <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour.java" />
         <option value="$PROJECT_DIR$/src/main/java/baidu/M0424_Shan_Tiao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/runn/MathTicket.java" />
@@ -747,14 +858,11 @@
         <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/iml/IDoo.java" />
         <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/iml/IDooRun.java" />
         <option value="$PROJECT_DIR$/src/main/java/baidu/utils/LogUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/MainRunn.java" />
         <option value="$PROJECT_DIR$/src/main/java/baidu/M9604_Shan_Hao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/algorithm/probabillity/Match02Info.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/algorithm/probabillity/Match03Info.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/CoreMath.java" />
         <option value="$PROJECT_DIR$/src/test/java/Test/Match_Test01.java" />
-        <option value="$PROJECT_DIR$/src/main/java/baidu/bean/MatchWinInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/MatchWin.java" />
         <option value="$PROJECT_DIR$/src/main/java/baidu/bean/TicketInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/baidu/bean/PourInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fast/FastMysql.java" />
@@ -764,20 +872,34 @@
         <option value="$PROJECT_DIR$/src/main/java/baidu/utils/CoreMath.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/algorithm/probabillity/ProbabilitySpecluate.java" />
         <option value="$PROJECT_DIR$/src/main/java/baidu/M960424_DanDui.java" />
-        <option value="$PROJECT_DIR$/src/main/java/baidu/M960424_San_Tiao_1_1.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/runn/DataTask.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/runn/MatchLocalDate.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fast/FastAllColor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour2.java" />
-        <option value="$PROJECT_DIR$/src/main/java/subweb/SubwebUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/subweb/subRun/SubWeb_VR_1_1.java" />
-        <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/domain/Do01_1Runn.java" />
         <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/iml/IDoPour.java" />
         <option value="$PROJECT_DIR$/src/main/java/matchore/TimeCall.java" />
         <option value="$PROJECT_DIR$/src/main/java/matchore/WaitTimeCall.java" />
-        <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour_1_1.java" />
-        <option value="$PROJECT_DIR$/src/main/java/matchore/MatchCore.java" />
         <option value="$PROJECT_DIR$/src/test/java/Test/Match_Test02.java" />
+        <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/niuniu/NiuNIuMatch.java" />
+        <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/MatchWin.java" />
+        <option value="$PROJECT_DIR$/src/main/java/baidu/bean/MatchWinInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/baidu/M960424_San_Tiao_1_1.java" />
+        <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/domain/Do01_1Runn.java" />
+        <option value="$PROJECT_DIR$/src/main/java/baidu/utils/MapUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/matchore/MatchCore.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/TestMysql.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/TicketInfoInsert.java" />
+        <option value="$PROJECT_DIR$/src/main/java/subweb/subRun/SubWebInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/runn/MatchLocalDate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/videoracing/bean/HrefInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/subweb/SubwebUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/videoracing/main/TestMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/matchore/MatchBig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/runn/DataTask.java" />
+        <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour2.java" />
+        <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/MainRunn.java" />
+        <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour_1_1.java" />
+        <option value="$PROJECT_DIR$/src/main/java/baidu/Ecai/domain/Do01_1RunnJK.java" />
+        <option value="$PROJECT_DIR$/src/main/java/baidu/M0401_JianK.java" />
+        <option value="$PROJECT_DIR$/src/main/java/subweb/subRun/SubWeb_VR_1_1.java" />
       </list>
     </option>
   </component>
@@ -794,10 +916,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-4" />
-    <option name="y" value="3" />
-    <option name="width" value="1450" />
-    <option name="height" value="1035" />
+    <option name="x" value="283" />
+    <option name="y" value="81" />
+    <option name="width" value="1036" />
+    <option name="height" value="787" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -824,8 +946,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -885,15 +1007,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="baidu" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="baidu" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -903,35 +1016,7 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="algorithm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="baidu" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="probabillity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="baidu" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="analyze" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="baidu" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="fast" type="462c0819:PsiDirectoryNode" />
+              <item name="runn" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
@@ -962,67 +1047,18 @@
               <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
               <item name="baidu" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="baidu" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="baidu" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="baidu" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="ticketUtils" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="baidu" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="ticketUtils" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="baidu" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="ticketUtils" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="videoracing" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
               <item name="baidu" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="ticketUtils" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="baidu" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="ticketUtils" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="baidu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="baidu" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="ticketUtils" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ticket" type="462c0819:PsiDirectoryNode" />
+              <item name="videoracing" type="462c0819:PsiDirectoryNode" />
+              <item name="bean" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1035,7 +1071,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="D:/Development/Android/SDK" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555117764944" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555406108665" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/libs/jpush-client-3.3.3.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -1047,13 +1083,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="baidu.Ecai.domain" />
       <recent name="Test" />
       <recent name="baidu" />
       <recent name="com.algorithm.probabillity" />
       <recent name="baidu.Ecai" />
-      <recent name="com" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="H:\Development_Project\GitHub\JAVAServer\baidu\src\main\java\baidu\utils" />
       <recent name="H:\Development_Project\GitHub\JAVAServer\baidu\src\main\libs" />
       <recent name="H:\Development_Project\GitHub\JAVAServer\baidu" />
       <recent name="H:\Development_Project\GitHub\JAVAServer\baidu\src\main\java" />
@@ -1071,13 +1108,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Match_Test02">
-    <configuration name="FastAllColor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.fast.FastAllColor" />
+  <component name="RunManager" selected="Application.M0401_JianK">
+    <configuration name="DataTask" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.runn.DataTask" />
       <module name="baidu_main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.fast.*" />
+          <option name="PATTERN" value="com.runn.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -1085,8 +1122,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="M960424_San_Tiao_1_1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="baidu.M960424_San_Tiao_1_1" />
+    <configuration name="M0401_JianK" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="baidu.M0401_JianK" />
       <module name="baidu_main" />
       <extension name="coverage">
         <pattern>
@@ -1098,12 +1135,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MatchCore" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="matchore.MatchCore" />
+    <configuration name="MatchLocalDate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.runn.MatchLocalDate" />
       <module name="baidu_main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="matchore.*" />
+          <option name="PATTERN" value="com.runn.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -1111,12 +1148,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Match_Test02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test.Match_Test02" />
-      <module name="baidu_test" />
+    <configuration name="SubWeb_VR_1_1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="subweb.subRun.SubWeb_VR_1_1" />
+      <module name="baidu_main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Test.*" />
+          <option name="PATTERN" value="subweb.subRun.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -1124,12 +1161,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProbabilitySpecluate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.algorithm.probabillity.ProbabilitySpecluate" />
+    <configuration name="TestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="videoracing.main.TestMain" />
       <module name="baidu_main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.algorithm.probabillity.*" />
+          <option name="PATTERN" value="videoracing.main.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -1138,19 +1175,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.ProbabilitySpecluate" />
-      <item itemvalue="Application.MatchCore" />
-      <item itemvalue="Application.M960424_San_Tiao_1_1" />
-      <item itemvalue="Application.FastAllColor" />
-      <item itemvalue="Application.Match_Test02" />
+      <item itemvalue="Application.SubWeb_VR_1_1" />
+      <item itemvalue="Application.DataTask" />
+      <item itemvalue="Application.TestMain" />
+      <item itemvalue="Application.MatchLocalDate" />
+      <item itemvalue="Application.M0401_JianK" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Match_Test02" />
-        <item itemvalue="Application.M960424_San_Tiao_1_1" />
-        <item itemvalue="Application.FastAllColor" />
-        <item itemvalue="Application.MatchCore" />
-        <item itemvalue="Application.ProbabilitySpecluate" />
+        <item itemvalue="Application.SubWeb_VR_1_1" />
+        <item itemvalue="Application.M0401_JianK" />
+        <item itemvalue="Application.DataTask" />
+        <item itemvalue="Application.TestMain" />
+        <item itemvalue="Application.MatchLocalDate" />
       </list>
     </recent_temporary>
   </component>
@@ -1195,12 +1232,16 @@
       <workItem from="1554771476044" duration="15152000" />
       <workItem from="1554856287629" duration="32167000" />
       <workItem from="1554909977363" duration="461000" />
-      <workItem from="1554942831847" duration="77509000" />
+      <workItem from="1554942831847" duration="91573000" />
+      <workItem from="1555220688049" duration="17196000" />
+      <workItem from="1555290267461" duration="15527000" />
+      <workItem from="1555313004472" duration="21077000" />
+      <workItem from="1555374984550" duration="17713000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="468172000" />
+    <option name="totallyTimeSpent" value="553749000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1212,10 +1253,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
-    <editor active="true" />
+    <frame x="930" y="88" width="1036" height="787" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.36923078" visible="true" weight="0.22050938" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.124475524" visible="true" weight="0.2930328" />
       <window_info id="Structure" order="1" sideWeight="0.76363635" side_tool="true" weight="0.23927614" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1229,12 +1269,12 @@
       <window_info anchor="bottom" id="TODO" order="4" weight="0.32867134" />
       <window_info anchor="bottom" id="Build" order="5" weight="0.32960895" />
       <window_info anchor="bottom" id="Terminal" order="6" weight="0.32960895" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50067025" side_tool="true" weight="0.50695324" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.45314685" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.7533512" side_tool="true" weight="0.61784285" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.13776337" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32867134" />
-      <window_info anchor="bottom" x="88" y="527" width="834" height="722" id="Debug" order="11" sideWeight="0.49932975" weight="0.9958042" />
-      <window_info anchor="bottom" x="0" y="346" width="1536" height="826" id="Run" order="12" sideWeight="0.2472067" weight="0.42097902" />
+      <window_info anchor="bottom" x="88" y="527" width="834" height="722" id="Debug" order="11" sideWeight="0.49932975" weight="0.78428763" />
+      <window_info active="true" anchor="bottom" x="20" y="142" width="1087" height="551" id="Run" order="12" sideWeight="0.87552446" visible="true" weight="0.95552146" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1300,112 +1340,10 @@
           <properties />
           <option name="timeStamp" value="28" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/subweb/SubwebUtil.java</url>
-          <line>93</line>
-          <properties />
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/subweb/SubwebUtil.java</url>
-          <line>95</line>
-          <properties />
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/subweb/SubwebUtil.java</url>
-          <line>98</line>
-          <properties />
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/iml/IDooRun.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/algorithm/probabillity/Match03Info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="8" column="31" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/algorithm/probabillity/Match02Info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Development/Java/jdk1.8.0_181/src.zip!/java/util/List.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="475" column="17" selection-start-line="475" selection-start-column="17" selection-end-line="475" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/runn/TicketWhere.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1558">
-          <caret line="87" column="25" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/runn/MathTicket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2660">
-          <caret line="170" column="17" selection-start-line="170" selection-start-column="17" selection-end-line="170" selection-end-column="17" />
-          <folding>
-            <element signature="e#1350#1352#0" />
-            <element signature="e#6848#6849#0" expanded="true" />
-            <element signature="e#6891#6892#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/subweb/subRun/SubWebInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="32" column="2" lean-forward="true" selection-start-line="32" selection-start-column="2" selection-end-line="32" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/bean/MatchWinInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/M04_Liang_Dui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/baidu/M0424_Shan_Tiao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -1424,24 +1362,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-140">
           <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/TicketInfoInsert.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="32" column="48" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Development/Java/jdk1.8.0_181/src.zip!/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="234" column="18" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
-          <folding>
-            <element signature="e#10065#10066#0" expanded="true" />
-            <element signature="e#10148#10149#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1474,10 +1394,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="512" column="23" selection-start-line="512" selection-start-column="23" selection-end-line="512" selection-end-column="23" />
-          <folding>
-            <element signature="e#17706#17707#0" expanded="true" />
-            <element signature="e#17748#17749#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1485,17 +1401,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
-          <folding>
-            <element signature="e#3151#3152#0" expanded="true" />
-            <element signature="e#3195#3196#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/PattenUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="51" column="31" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1510,37 +1415,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="97" column="90" selection-start-line="97" selection-start-column="82" selection-end-line="97" selection-end-column="90" />
-          <folding>
-            <element signature="method#contin#0;class#ProbabilitySpecluate#0" />
-            <element signature="method#out02#0;class#ProbabilitySpecluate#0" />
-            <element signature="method#out03#0;class#ProbabilitySpecluate#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/bean/PourInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/M960424_San_Tiao_1_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="37" column="8" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/runn/MatchLocalDate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1616">
-          <caret line="119" column="109" lean-forward="true" selection-start-line="119" selection-start-column="109" selection-end-line="119" selection-end-column="109" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1455#1498#0" />
-            <element signature="e#3630#3753#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1562,10 +1436,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="160" column="53" lean-forward="true" selection-start-line="160" selection-start-column="53" selection-end-line="160" selection-end-column="53" />
-          <folding>
-            <element signature="e#3128#3129#0" expanded="true" />
-            <element signature="e#3181#3182#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1579,25 +1449,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/MatchWin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="60" column="31" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="76" column="28" selection-start-line="76" selection-start-column="28" selection-end-line="76" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2024#2025#0" expanded="true" />
-            <element signature="e#2084#2085#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/baidu/utils/CoreMath.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -1605,45 +1456,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/M0401_JianK.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/matchore/WaitTimeCall.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+        <state relative-caret-position="57">
+          <caret line="3" column="31" lean-forward="true" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/runn/DataTask.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/Test/Match_Test02.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="429" column="24" selection-start-line="429" selection-start-column="24" selection-end-line="429" selection-end-column="24" />
+        <state relative-caret-position="38">
+          <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/CoreMath.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="284" column="25" selection-start-line="284" selection-start-column="25" selection-end-line="284" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/niuniu/NiuNIuMatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="847">
+          <caret line="116" column="14" selection-start-line="116" selection-start-column="14" selection-end-line="116" selection-end-column="14" />
           <folding>
-            <element signature="e#17882#17883#0" expanded="true" />
-            <element signature="e#17970#17971#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#4141#4143#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/MainRunn.java">
+    <entry file="jar://D:/Development/Java/jdk1.8.0_181/src.zip!/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="153" column="27" selection-start-line="153" selection-start-column="18" selection-end-line="153" selection-end-column="60" />
+        <state relative-caret-position="104">
+          <caret line="234" column="18" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
+          <folding>
+            <element signature="e#10065#10066#0" expanded="true" />
+            <element signature="e#10148#10149#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/MatchWin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="57" column="12" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/bean/MatchWinInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1">
+          <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/baidu/bean/WinInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="114">
+          <caret line="6" column="23" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour2.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/bean/PourInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="120" column="57" lean-forward="true" selection-start-line="120" selection-start-column="57" selection-end-line="120" selection-end-column="57" />
+        <state relative-caret-position="95">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/utils/MapUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
           <folding>
-            <element signature="e#7475#7476#0" expanded="true" />
-            <element signature="e#7515#7516#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1657,15 +1553,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/TestMysql.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="187" column="21" selection-start-line="187" selection-start-column="21" selection-end-line="187" selection-end-column="21" />
+        <state relative-caret-position="181">
+          <caret line="188" column="22" selection-start-line="188" selection-start-column="22" selection-end-line="188" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/TicketInfoInsert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-852">
+          <caret line="39" column="52" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-190" />
+      </provider>
+    </entry>
+    <entry file="jar://D:/Development/Idea/Gradle/gradle-4.8.1/caches/modules-2/files-2.1/org.jsoup/jsoup/1.11.3/871302b15d8cee9bfb393c4f1d0386b17646d8d1/jsoup-1.11.3-sources.jar!/org/jsoup/Jsoup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="71" column="30" lean-forward="true" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/runn/MatchLocalDate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1558">
+          <caret line="96" column="62" selection-start-line="96" selection-start-column="62" selection-end-line="96" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#matchWin#0;class#MatchLocalDate#0" />
+            <element signature="method#matchA#0;class#MatchLocalDate#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/videoracing/bean/HrefInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="18" column="56" lean-forward="true" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/PattenUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="51" column="83" selection-start-line="51" selection-start-column="76" selection-end-line="51" selection-end-column="83" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/subweb/SubwebUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="69" column="29" selection-start-line="69" selection-start-column="29" selection-end-line="69" selection-end-column="29" />
+        <state relative-caret-position="228">
+          <caret line="79" column="52" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2176#2177#0" expanded="true" />
@@ -1674,99 +1615,145 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/domain/Do01_1Runn.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/videoracing/main/TestMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="158" column="30" lean-forward="true" selection-start-line="158" selection-start-column="30" selection-end-line="158" selection-end-column="30" />
+        <state relative-caret-position="418">
+          <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5356#5357#0" expanded="true" />
-            <element signature="e#5395#5396#0" expanded="true" />
+            <element signature="method#matchNoticeHref#0;class#TestMain#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/iml/IDoPour.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="43" column="49" lean-forward="true" selection-start-line="43" selection-start-column="49" selection-end-line="43" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/CoreMath.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1508">
-          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/niuniu/NiuNIuMatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="72" column="25" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4141#4143#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour_1_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="370" column="17" lean-forward="true" selection-start-line="360" selection-start-column="15" selection-end-line="370" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#13023#13024#0" expanded="true" />
-            <element signature="e#13129#13130#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/matchore/WaitTimeCall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="31" lean-forward="true" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/subweb/subRun/SubWeb_VR_1_1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="58" column="43" selection-start-line="58" selection-start-column="43" selection-end-line="58" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/Test/Match_Test02.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/subweb/subRun/SubWebInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
-          <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/matchore/MatchBig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
           <folding>
-            <element signature="e#1106#1107#0" expanded="true" />
-            <element signature="e#1153#1154#0" expanded="true" />
-            <element signature="e#1411#1412#0" expanded="true" />
-            <element signature="e#1517#1518#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/utils/Out.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/runn/DataTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="338" column="33" lean-forward="true" selection-start-line="338" selection-start-column="33" selection-end-line="338" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/M960424_San_Tiao_1_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/MainRunn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="158" column="73" lean-forward="true" selection-start-line="158" selection-start-column="73" selection-end-line="158" selection-end-column="73" />
+          <folding>
+            <element signature="e#5530#5664#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/baidu/bean/TicketInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-323">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="57">
+          <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/iml/IDoPour.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/domain/Do01_1Runn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="161" column="31" selection-start-line="161" selection-start-column="31" selection-end-line="161" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/matchore/MatchCore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4090">
-          <caret line="513" column="52" selection-start-line="513" selection-start-column="52" selection-end-line="513" selection-end-column="52" />
+        <state relative-caret-position="19">
+          <caret line="526" column="24" selection-start-line="526" selection-start-column="24" selection-end-line="526" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#matchWinMoney#0;class#MatchCore#0" />
+            <element signature="method#dynamicIndes#0;class#MatchCore#0" />
+            <element signature="method#matchWin#0;class#MatchCore#0" />
+            <element signature="method#matchAssign#0;class#MatchCore#0" />
+            <element signature="method#getV#0;class#MatchCore#0" />
+            <element signature="method#start#0;class#MatchCore#0" />
+            <element signature="method#matchInfo#1;class#MatchCore#0" />
+            <element signature="method#saveHisMap#0;class#MatchCore#0" />
+            <element signature="method#getMaxInfo#0;class#MatchCore#0" />
+            <element signature="method#sendNotifyMessage#0;class#MatchCore#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/M0401_JianK.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/subweb/subRun/SubWeb_VR_1_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="112" column="33" lean-forward="true" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/domain/Do01_1RunnJK.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="138" column="25" lean-forward="true" selection-start-line="138" selection-start-column="25" selection-end-line="138" selection-end-column="25" />
+          <folding>
+            <element signature="e#4846#4847#0" expanded="true" />
+            <element signature="e#4885#4886#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/baidu/Ecai/DoPour_1_1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="461" column="16" selection-start-line="461" selection-start-column="16" selection-end-line="461" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

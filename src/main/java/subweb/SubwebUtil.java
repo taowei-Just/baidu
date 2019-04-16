@@ -73,7 +73,7 @@ public class SubwebUtil {
             results = new ArrayList<>();
 
         str = PattenUtil.replaceBlank(str).replace(" ", "");
-        System.err.println("subWeb_"+str+"\n ");
+//        System.err.println("subWeb_"+str+"\n ");
  
             SubWebInfo webInfo = webInfoS[0];
 //            System.err.println(webInfo.toString());
@@ -100,6 +100,7 @@ public class SubwebUtil {
             }
         return results;
     }
+
 
  
 }

@@ -30,9 +30,11 @@ public class MatchCore {
     public static int[] countS = new int[]{60, 30, 17, 7, -1, -1, -1, -1};
     public static double[] dubS = new double[]{2.0, 1, 0.2, 0.1, 0.02};
     public static double[] messAgeSends = new double[]{0, 0, 0, 0, 0, 0, 0, 0};
+ 
+    public static int[]  minilenths = new int[]{0, 0, 0, 0, 0, 0, 0, 3};
 
     // 间隔提醒阈值
-    public static double[] thresholdS = new double[]{150, 60, 50, 20, 20, 13, 5, 10};
+    public static double[] thresholdS = new double[]{3000, 300, 50, 50, 30, 35, 4, 8};
 
     private final TestMysql testMysql;
     private static MatchCore matchWin;
@@ -59,7 +61,8 @@ public class MatchCore {
         }else {
             Out.e("从网络获取最新数据 ");
             try {
-                List<DataTask.Info> infos1 = SubWeb_VR_1_1.doSubVR_1_1();
+                List<DataTask.Info> infos1 = SubWeb_VR_1_1.doSubVR_1_1(testMysql);
+             
                 for (int i = 0; i < infos1.size(); i++) {
                     DataTask.Info info1 = infos1.get(i);
                     boolean have =false ;
@@ -80,6 +83,14 @@ public class MatchCore {
 
         }
 
+        for (int i = 0; i < infos.size(); i++) {
+            DataTask.Info info2 = infos.get(i);
+            if (!info2.date.equals(currentWininfo.currentIssue.substring(0, 8))) {
+                infos.remove(i);
+                i--;
+            }
+        }
+        Collections.sort(infos);
         Out.e(" 得到最近数据 " +infos.toString());
         return infos ;
     }
@@ -90,9 +101,20 @@ public class MatchCore {
     }
 
     private void test() {
-        TicketInfo info = creatTicketInfo(4, 5, 0.35, 8000, 4, 1);
-        
+        TicketInfo info;
+        TicketInfo infozhadan= creatTicketInfo(2, 5, 0.3, 8000, 4, 1);
+        TicketInfo infoshunzi= creatTicketInfo(3, 5, 0.3, 8000, 4, 1);
+        TicketInfo infoSantiao = creatTicketInfo(4, 5, 0.35, 8000, 4, 1);
+        TicketInfo infoLiangdui= creatTicketInfo(5, 5, 0.3, 8000, 4, 1);
+        TicketInfo infoDandui = creatTicketInfo(6, 5, 0.30, 8000, 4, 1);
+        TicketInfo infoShanhao= creatTicketInfo(7, 5, 0.3, 8000, 4, 1);
+     
+        info = infoSantiao ;
         List<PourInfo> pourInfos = getDanduiPourInfos(info);
+        for (PourInfo pourInfo : pourInfos) {
+            Out.e(pourInfo.toString());
+        }
+      
         Calendar instance = Calendar.getInstance();
         instance.set(2019, 03, 01);
         int i1 = instance.get(Calendar.DAY_OF_YEAR);
@@ -208,12 +230,12 @@ public class MatchCore {
                 if (j >= pourInfos.size() + indedeS[indede]) {
                     PourInfo pourInfo = pourInfos.get(pourInfos.size() - 1);
                     Out.e(" 损失：" + pourInfo.total);
-                    Out.e("损失 间隔 " + (j) + "期");
+                    Out.e("损失 间隔 " + (j) + "期 " +  indedeS[indede]);
                     money -= pourInfo.total;
                     max = pourInfo.total > max ? pourInfo.total : max;
                 } else {
                     PourInfo pourInfo = pourInfos.get(j - indedeS[indede]);
-                    Out.e(" 盈利：" + pourInfo.win + " " +j );
+//                    Out.e(" 盈利：" + pourInfo.win + " " +j );
                     money += pourInfo.win;
                     max = pourInfo.total > max ? pourInfo.total : max;
 
@@ -271,15 +293,22 @@ public class MatchCore {
         
         
         int maxJump = total - pourInfos.size() + 1;
-        int [] juMpS =new int[]{ maxJump,maxJump,(maxJump/2),(maxJump/2)/2,0};
-        
+//        int [] juMpS =new int[lenthSends[indede]];
+//        juMpS[0] = maxJump ;
+//        juMpS[1] = maxJump;
+//        for (int i = 2; i < juMpS.length; i++) {
+//            juMpS[i] = juMpS[i-1]/2; 
+//        }
+        int [] juMpS =new int[]{maxJump ,maxJump, maxJump/2 ,0};
         if (count < juMpS.length)
             indedeS[indede] = juMpS[count];
         else 
-            indedeS[indede]=0;
+            indedeS[indede]=minilenths[indede];
+        if ( indedeS[indede]<minilenths[indede])
+            indedeS[indede]=minilenths[indede];
 
-        Out.e(" 当前最大间隔为 :" + dataTotal + " 超过最大间隔一半的数量：" +count +  " 跟注期数：" +pourInfos.size());
-        Out.e(" 当前最跳过长度为 :" + indedeS[indede] );
+//        Out.e(" 当前最大间隔为 :" + dataTotal + " 超过最大间隔一半的数量：" +count +  " 跟注期数：" +pourInfos.size());
+//        Out.e(" 当前最跳过长度为 :" + indedeS[indede] );
      
 //        0 ,1, 2 ,3 ,4 ,5 ,6 ,7 ,8 ;
 //        17 , 17 ,8,2,1,0
@@ -295,13 +324,6 @@ public class MatchCore {
          *  68-7
          *  50-8
          */
-         
-        
-        
-        
-        
-        
-        
     }
 
     public static Map<Integer, Integer> toatalMax(TestMysql sql, int indede) {
@@ -358,8 +380,8 @@ public class MatchCore {
             pourInfo.win = (bet * mults[matchWinInfo.inde]) - total;
             pourInfo.total = total;
             doubles.add(pourInfo);
-            Out.d("计算第：" + (i + 1) + "项 值为：" + bet + " total " + total + " present " + pv * 100 + "%");
-            Out.d(" 验证 " + ((bet * mults[matchWinInfo.inde]) - total));
+//            Out.d("计算第：" + (i + 1) + "项 值为：" + bet + " total " + total + " present " + pv * 100 + "%");
+//            Out.d(" 验证 " + ((bet * mults[matchWinInfo.inde]) - total));
 
         }
         return doubles;
@@ -486,7 +508,7 @@ public class MatchCore {
     }
     public static void sendNotifyMessage( TicketInfo info ,Integer integer, long l, String currentIssue, String periods) {
         // [监控提醒] 当前 [三条] 已经有[20]期未出现请留意，当前销售期数为[210051]上一次出现期数为 [20120212]
-        String msg = "账号 " + info.account + " [监控提醒]当前 [" +  MatchCore.detailS[integer] + "] 已经有[" + (l-1) + "]期未出现了，敬请留意，当前销售期数为[" + currentIssue + "]上一次出现期数为 [" + periods + "]";
+        String msg = " \n消息时间："+new SimpleDateFormat("yyyyMMdd HH:mm:ss.S").format(new Date(System.currentTimeMillis()))+" \n账号 " + info.account + " [监控提醒]当前 [" +  MatchCore.detailS[integer] + "] 已经有[" + (l-1) + "]期未出现了，敬请留意，当前销售期数为[" + currentIssue + "]上一次出现期数为 [" + periods + "]";
         Main.pushAllMessage(msg);
     }
     public static void outMessage(TicketInfo ticketInfo, WinInfo winInfo, Map<Integer, DataTask.Info> infoMap) {
@@ -518,10 +540,9 @@ public class MatchCore {
                         call.onTimeOpen(System.currentTimeMillis());
                         return;
                     }
-                  
                     call.onNoTime(calendar.getTimeInMillis());
                     try {
-                        Thread.sleep(1 * 1000);
+                        Thread.sleep(5 * 1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -530,5 +551,22 @@ public class MatchCore {
         }).start();
 
     }
+    
+   public  static  int  maxTotal(TestMysql testMysql , int indede) {
+        Map<Integer, Integer> toatalMax = MatchCore.toatalMax(testMysql,  indede);
+        Set<Integer> totalSet = toatalMax.keySet();
+
+        List<DataTask.Info> infoList = new ArrayList<>();
+        List<Integer> sortL = new ArrayList<>();
+
+        for (Integer integer : totalSet) {
+            sortL.add(integer);
+        }
+        Collections.sort(sortL);
+
+       return sortL.get(sortL.size() - 1);
+    
+    }
+        
 
 }

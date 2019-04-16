@@ -95,7 +95,7 @@ public interface IDoPour {
 
     void waitDialog();
 
-    void init();
+    void init() throws Exception;
 
     public static class History {
         public String number = "10";

@@ -16,24 +16,53 @@ public class MatchWin {
     private static MatchWinInfo shanhaoWinInfo;
 
 
-    public static MatchWinInfo[] matchInfoS = new MatchWinInfo[]{null, null, null, null,
+    public static MatchWinInfo[] matchInfoS = new MatchWinInfo[]{  
+            new MatchWinInfo().
+            setInde(0)
+            .setPresent(0.1)
+            .setDecreasP(0.1)
+            .setZhiSunP(0.3), 
+            
+            new MatchWinInfo().
+            setInde(1)
+            .setPresent(0.1)
+            .setDecreasP(0.1)
+            .setZhiSunP(0.3),  
+            
+            new MatchWinInfo().
+            setInde(2)
+            .setPresent(0.1)
+            .setDecreasP(0.1)
+            .setZhiSunP(0.3),  
+            
+            new MatchWinInfo().
+            setInde(3)
+            .setPresent(0.1)
+            .setDecreasP(0.1)
+            .setZhiSunP(0.3),
+            
             new MatchWinInfo(),
+            
             new MatchWinInfo().
                     setInde(5)
                     .setPresent(0.1)
                     .setDecreasP(0.1)
                     .setZhiSunP(0.3),
+            
             new MatchWinInfo()
                     .setInde(6)
                     .setAssign(1)
                     .setPresent(0.2)
                     .setDecreasP(0.3)
                     .setZhiSunP(0.3),
+            
             new MatchWinInfo()
                     .setInde(7)
                     .setAssign(1)
                     .setPresent(0.3)
-                    .setDecreasP(0.2)};
+                    .setDecreasP(0.2)
+    
+    };
 
     static {
         matchliangduiWinInfo = new MatchWinInfo().

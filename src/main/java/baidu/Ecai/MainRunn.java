@@ -1,9 +1,12 @@
 package baidu.Ecai;
 
 import baidu.Ecai.domain.Do01_1Runn;
+import baidu.Ecai.domain.Do01_1RunnJK;
 import baidu.bean.TicketInfo;
 import baidu.utils.Elementutil;
 import baidu.utils.Out;
+import matchore.MatchCore;
+import matchore.WaitTimeCall;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,6 +15,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -32,6 +36,7 @@ public class MainRunn implements Runnable {
     @Override
     public void run() {
         waitIngOpen(info.openMarket, info.closeMarket);
+
         String url = "http://6618222.com";
         System.setProperty("webdriver.gecko.driver", "D:\\Program Files (x86)\\Mozilla Firefox\\geckodriver.exe");
         System.setProperty("webdriver.firefox.bin", "D:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
@@ -125,38 +130,39 @@ public class MainRunn implements Runnable {
                 elementutil.clickPath("/html/body/div[1]/div/div[1]/div/div/div/div[1]/div/ul/li[1]");
 
                 break;
-                case -1:
-                      element = firefoxDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div[2]/div/ul/li[3]/a/span"));
-                    System.err.println(element.getText());
-                    if (element.getText().contains("VR彩票"))
-                        element.click();
-                    firefoxDriver.close();
+            case -1:
+//                element = firefoxDriver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div/div[1]/div[2]/div/ul/li[3]/a/span"));
+//                System.err.println(element.getText());
+//                if (element.getText().contains("VR彩票"))
+//                    element.click();
+//                firefoxDriver.close();
+//
+//                Elementutil.wait_(1);
+//                windowHandles = firefoxDriver.getWindowHandles();
+//                iterator = windowHandles.iterator();
+//                while (iterator.hasNext()) {
+//                    String next = iterator.next();
+//                    if (!windowIds.contains("next"))
+//                        windowIds.add(next);
+//                }
+//
+//                firefoxDriver.switchTo().window(windowIds.get(windowIds.size() - 1));
+//
+//                System.err.println("当前界面id：" + firefoxDriver.getWindowHandle());
+//                Elementutil.wait_(1);
+//                elementutil.waitDialog(firefoxDriver);
+//                elementutil.clickPath("/html/body/div[2]/div/div[1]/div[2]/div/div[1]/div/div/div[1]/a[5]/i");
+//                elementutil.clickId("regularBetType");
+//                elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[2]/ul/li[14]");
+//                elementutil.clickPath("//*[@id=\"NiuNiuStud\"]");
 
-                    Elementutil.wait_(1);
-                     windowHandles = firefoxDriver.getWindowHandles();
-                     iterator = windowHandles.iterator();
-                    while (iterator.hasNext()) {
-                        String next = iterator.next();
-                        if (!windowIds.contains("next"))
-                            windowIds.add(next);
-                    }
+                new Do01_1RunnJK(firefoxDriver, info, windowIds).start();
+//                new DoPour2(firefoxDriver, info).start(4);
+                break;
 
-                    firefoxDriver.switchTo().window(windowIds.get(windowIds.size() - 1));
-
-                    System.err.println("当前界面id：" + firefoxDriver.getWindowHandle());
-                    Elementutil.wait_(1);
-                    elementutil.waitDialog(firefoxDriver);
-                    elementutil.clickPath("/html/body/div[2]/div/div[1]/div[2]/div/div[1]/div/div/div[1]/a[5]/i");
-                    elementutil.clickId("regularBetType");
-                    elementutil.clickPath("/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[2]/ul/li[14]");
-                    elementutil.clickPath("//*[@id=\"NiuNiuStud\"]");
-
-                  new DoPour2(firefoxDriver, info).start(4);
-                    break; 
-                    
-                    case 3:
-                  new Do01_1Runn(firefoxDriver, info ,windowIds).start();
-                    break;
+            case 3:
+                new Do01_1Runn(firefoxDriver, info, windowIds).start();
+                break;
         }
     }
 
@@ -172,7 +178,7 @@ public class MainRunn implements Runnable {
         long endTime = instance.getTimeInMillis();
 
         while (true) {
-            if (System.currentTimeMillis() > startTime ||System.currentTimeMillis() < endTime) {
+            if (System.currentTimeMillis() > startTime || System.currentTimeMillis() < endTime) {
                 Out.d("开盘时间到 开始启动。。");
 
                 return;

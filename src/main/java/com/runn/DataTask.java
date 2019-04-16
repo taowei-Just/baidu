@@ -1,10 +1,13 @@
 package com.runn;
 
+import baidu.Ecai.Main;
+import baidu.utils.Out;
 import com.CoreMath;
 import com.PattenUtil;
 import com.TestMysql;
 import com.TicketInfoInsert;
 import com.ejin.quickhttp.QuickClient;
+import matchore.MatchCore;
 import niuniu.NiuNIuMatch;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -27,7 +30,7 @@ public class DataTask {
     private final TicketInfoInsert infoInsertVr;
     private final TestMysql ticket_data_vr_3;
     private final TicketInfoInsert infoInsertVr_3;
-    String startperiods = "20190312047";
+    String startperiods = "20190412047";
     String endperiods = "20190305028";
 
     String url = "https://zst.cjcp.com.cn/cjwssc/view/ssc_zst5-ssc.html?startqi=" + startperiods + "&endqi=" + endperiods + "&searchType=9";
@@ -48,11 +51,11 @@ public class DataTask {
     //    String vrurl = "https://numbers.videoracing.com/analy_3_1.aspx";
     String vrurl_3 = "https://numbers.videoracing.com/analy_1_1.aspx";
 
-
     private final OkHttpClient httpClient;
     private final TestMysql testMysql;
     private TicketInfoInsert infoInsert;
     private final QuickClient quick;
+    private long lastIssue;
 
     public DataTask() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -86,97 +89,24 @@ public class DataTask {
                     dataTask.test2();
 //                    dataTask.test3();
                 } catch (IOException e) {
-                    isError=true ;
+                    isError = true;
                 }
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-       
+
                 System.gc();
                 run = false;
 
             }
 
         };
-        timer[0].scheduleAtFixedRate(timerTask, 1 * 1000, 10 * 1000);
-//        try {
-//            new TicketTime().test(new MyTimerTask.TimeCAll() {
-//                @Override
-//                public void onTime(int postion, long nexTime, long time) {
-//
-//                    System.err.println(Thread.currentThread()+" 当前期数:" + postion +  " 下一期时间 " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(nexTime))+" 当前时间 time:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(time)) + " 倒计时：" + (nexTime-System.currentTimeMillis())/1000 + "s");
-//
-//                    if ((nexTime - System.currentTimeMillis()) / 1000  < 1) {
-//                        System.err.println("刷新数据");
-//                        timer[0].cancel();
-//                        timer[0] =new Timer();
-//                       
-//                    }
-//                }
-//            });
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+        timer[0].scheduleAtFixedRate(timerTask, 1 * 1000, 5 * 1000);
+
     }
 
-//    private void test3()  throws IOException {
-//            List<Info> list = new ArrayList<>();
-//            Response execute = httpClient.newCall(new Request.Builder().url(vrurl_3).get().build()).execute();
-//            String string = PattenUtil.replaceBlank(execute.body().string());
-//            string = string.replace(" ", "");
-//
-//            String regex = "<divclass=\"tab-content\">(.*?)</section>";
-//            List<String> subUtil = PattenUtil.getSubUtil(string, regex, true);
-//            for (String s : subUtil) {
-//                System.err.println("test3:" + s);
-//                regex = "<divclass='css_tr(.*?)</div></div>";
-//                List<String> subUtil2 = PattenUtil.getSubUtil(s, regex, true);
-//                for (String st : subUtil2) {
-//                    regex = "<divclass='css_td'>(.*?)</div>";
-//                    List<String> subUtil12 = PattenUtil.getSubUtil(st, regex, false);
-//                    System.err.println("test3 日期 :" + subUtil12.toString());
-//                    regex = "<divclass='css_td3'>(.*?)</div>";
-//                    List<String> subUtil23 = PattenUtil.getSubUtil(st, regex, false);
-//                    System.err.println("test3 编号 :" + subUtil23.toString());
-//
-//                    regex = "<divclass='css_td2redbb'>(.*?)</div>";
-//                    List<String> subUtil24 = PattenUtil.getSubUtil(st, regex, false);
-//                    System.err.println("test3 号码 :" + subUtil24.toString());
-//
-//                    StringBuilder stringBuilder = new StringBuilder();
-//                    for (String str : subUtil24)
-//                        stringBuilder.append(str);
-//
-//                    try {
-//                        Info info = new Info();
-//                        info.order = subUtil23.get(0);
-//                        info.periods = subUtil12.get(0).replace("/", "") + info.order;
-//                        info.number = stringBuilder.toString();
-//                        info.location = CoreMath.mth(stringBuilder.toString()) - 1;
-//                        info.detail = CoreMath.detail(info.location);
-//                        info.date = subUtil12.get(0).replace("/", "");
-//                        list.add(info);
-//                        System.err.println("test3 info :" + info.toString());
-//                    } catch (Exception e) {
-//
-//                    }
-//                }
-//
-//            }
-//            for (int i = list.size() - 1; i >= 0; i--) {
-//                Info info = list.get(i);
-//                try {
-//                    if (i < 100)
-//                        writerLog(info.toString());
-//                    ticket_data_vr_3.insertData(infoInsertVr_3, info);
-//                } catch (SQLException e) {
-//
-//                }
-//            }
-//        
-//    }
 
     private int checkglfun(String str) {
 
@@ -263,7 +193,7 @@ public class DataTask {
         String regex = "<divclass=\"tab-content\">(.*?)</section>";
         List<String> subUtil = PattenUtil.getSubUtil(string, regex, true);
         for (String s : subUtil) {
-            System.err.println("test2:" + s);
+//            System.err.println("test2:" + s);
             regex = "<divclass='css_tr(.*?)</div></div>";
             List<String> subUtil2 = PattenUtil.getSubUtil(s, regex, true);
             for (String st : subUtil2) {
@@ -291,33 +221,79 @@ public class DataTask {
                     info.detail = CoreMath.detail(info.location);
                     info.date = subUtil12.get(0).replace("/", "");
                     int niuniu = NiuNIuMatch.matchNiu(info.number);
-                    info.niuniu = (niuniu >-1? niuniu==0? "牛牛" : "牛" + niuniu : "无牛");
+                    info.niuniu = (niuniu > -1 ? niuniu == 0 ? "牛牛" : "牛" + niuniu : "无牛");
                     list.add(info);
-                    System.err.println("test2 info :" + info.toString());
+
                 } catch (Exception e) {
 
                 }
             }
 
         }
+
+//        Collections.sort(list);
+        if (list == null || list.size() <= 0)
+            return;
+
         for (int i = list.size() - 1; i >= 0; i--) {
             Info info = list.get(i);
+
             try {
-                if (i < 100)
-                    writerLog(info.toString());
+                if (lastDataInf0S != null)
+                    for (int j = 0; j < lastDataInf0S.size(); j++) {
+                        Info info1 = lastDataInf0S.get(j);
+                        if (info.periods.equals(info1.periods))
+                            continue;
+                    }
+
                 ticket_data_vr.insertData(infoInsertVr, info);
             } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            if (lastDataInf0S == null)
+                Out.d(info.toString());
+            else {
+                boolean have = false;
+                for (int k = 0; k < lastDataInf0S.size(); k++) {
+                    DataTask.Info info2 = lastDataInf0S.get(k);
+                    if (info.periods.equals(info2.periods)) {
+
+                        have = true;
+                        break;
+                    }
+                }
+                if (!have) {
+                    lastDataInf0S.add(info);
+                    Out.d("__" + info.toString());
+                }
 
             }
         }
+
+        DataTask.Info info = list.get(0);
+        long parseLong = Long.parseLong(info.periods);
+        if (parseLong > lastIssue && info.location < 4) {
+            String str = " \n时间：" + new SimpleDateFormat("yyyyMMdd HH:mm:ss.S").format(new Date(System.currentTimeMillis())) +
+                    " \n" + "[VR1.5 彩] 大奖[" + MatchCore.detailS[info.location] + "] 出现了！期号["+ info.periods+"]历史出现最大间隔[" + (testMysql == null ? "【？？】" : MatchCore.maxTotal(testMysql, info.location)) + "]敬请关注！";
+
+            Main.pushAllMessage(str);
+            lastIssue = parseLong;
+        }
+        if (lastDataInf0S == null && list != null && list.size() > 0)
+            lastDataInf0S = list;
+
     }
+
+    List<DataTask.Info> lastDataInf0S;
+
 
     private void prepareUrl() {
         try {
             String s = infoInsert.queryMaxPro();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
             try {
-                System.err.println(" " + s);
+//                System.err.println(" " + s);
                 Date parse = dateFormat.parse(s.substring(0, 8));
                 int day = parse.getDay();
                 int month = parse.getMonth();
@@ -326,8 +302,8 @@ public class DataTask {
                 int i = instance.get(Calendar.DAY_OF_MONTH);
                 int m = instance.get(Calendar.MONTH);
 
-                System.err.println("  " + day);
-                System.err.println(" " + i);
+//                System.err.println("  url " + day);
+//                System.err.println("url " + i);
 
                 if (day < i || month < m) {
                     endperiods = dateFormat.format(new Date(System.currentTimeMillis())) + "060";
@@ -341,7 +317,7 @@ public class DataTask {
             e.printStackTrace();
         }
         url = "https://zst.cjcp.com.cn/cjwssc/view/ssc_zst5-ssc.html?startqi=" + startperiods + "&endqi=" + endperiods + "&searchType=9";
-        System.err.println(url);
+//        System.err.println(url);
     }
 
     private void test() {
@@ -378,7 +354,7 @@ public class DataTask {
                         info.detail = CoreMath.detail(info.location);
                         info.date = info.periods.substring(0, 8);
                         int niuniu = NiuNIuMatch.matchNiu(info.number);
-                        info.niuniu = (niuniu >-1? niuniu==0? "牛牛" : "牛" + niuniu : "无牛");
+                        info.niuniu = (niuniu > -1 ? niuniu == 0 ? "牛牛" : "牛" + niuniu : "无牛");
                         list.add(info);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -427,8 +403,8 @@ public class DataTask {
         }
     }
 
-    public static class Info  implements Comparable<Info>{
-        public  int index ;
+    public static class Info implements Comparable<Info> {
+        public int index;
         public String order;
         public String number;
         public String periods;
@@ -440,16 +416,16 @@ public class DataTask {
 
         @Override
         public String toString() {
-            return  
+            return
                     "  " + periods + '\'' +
-                    ",  " + number + '\'' +
-                    ", " + detail + '\'' +
-                    ", [ " + alie  + " ]}   " + "       location  "+location;
+                            ",  " + number + '\'' +
+                            ", " + detail + '\'' +
+                            ", [ " + alie + " ]}   " + "       location  " + location;
         }
 
         @Override
         public int compareTo(@NotNull Info o) {
-            return (int) (Long.parseLong(periods)-Long.parseLong(o.periods));
+            return (int) (Long.parseLong(periods) - Long.parseLong(o.periods));
         }
     }
 }

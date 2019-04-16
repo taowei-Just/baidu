@@ -4,6 +4,7 @@ import baidu.Ecai.DoPour_1_1;
 import baidu.Ecai.Main;
 import baidu.Ecai.iml.IDoPour;
 import baidu.Ecai.iml.IDooRun;
+import baidu.M960424_San_Tiao_1_1;
 import baidu.bean.PourInfo;
 import baidu.bean.TicketInfo;
 import baidu.bean.WinInfo;
@@ -21,7 +22,7 @@ import java.util.*;
 
 public class Do01_1Runn implements IDooRun {
 
-    private LogUtils logUtils;
+    private static LogUtils logUtils;
     private Elementutil elementutil;
     RemoteWebDriver webDriver;
     TicketInfo info;
@@ -40,8 +41,13 @@ public class Do01_1Runn implements IDooRun {
         this.windowIds = windowIds;
         this.elementutil = new Elementutil(webDriver);
         logUtils = new LogUtils("e:\\Temp\\log\\" + new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())) + "\\" + getClass().getSimpleName() + "" + info.tag + ".txt");
-        doPour = new DoPour_1_1(webDriver, info, windowIds);
-        testMysql = new TestMysql("ticket_data_vr_1_1");
+        try {
+            doPour = new DoPour_1_1(webDriver, info, windowIds);
+            testMysql = new TestMysql("ticket_data_vr_1_1");
+        } catch (Exception e) {
+            e.printStackTrace();
+         new Main().start(info);   
+        }
     }
 
 
@@ -61,6 +67,8 @@ public class Do01_1Runn implements IDooRun {
 
     @Override
     public void start() {
+        if (doPour ==null ||testMysql ==null )
+            return;
         hisMap.clear();
         try {
             Out.e("1等待警示弹窗");
@@ -81,14 +89,6 @@ public class Do01_1Runn implements IDooRun {
             List<DataTask.Info> infos = MatchCore.querYInfoNet(testMysql, currentWininfo);
 
             MatchCore.matchInfo(hisMap, infos);
-
-            for (int i = 0; i < infos.size(); i++) {
-                DataTask.Info info = infos.get(i);
-                if (!info.date.equals(currentWininfo.currentIssue.substring(0, 8))) {
-                    infos.remove(i);
-                    i--;
-                }
-            }
             
             data = doPour.matchData(infos, 0);
             Out.e("6获取当前历史 距离  " + data);
@@ -96,13 +96,11 @@ public class Do01_1Runn implements IDooRun {
 
             List<PourInfo> pourInfos = MatchCore.getDanduiPourInfos(info);
 
-
 //            MatchCore.matchWinMoney(testMysql, infos, pourInfos, info.indede);
             Out.e("8 获取历史数据中最大间隔数");
 
             Map<Integer, Integer> toatalMax = MatchCore.toatalMax(testMysql, info.indede);
             Out.e("9 设置当前投注跳过间隔");
-
             MatchCore.dynamicIndes(pourInfos, infos, toatalMax, info.indede);
             Out.e("11   得到下注期号列表");
             List<Long> longs = doPour.mathPriods(currentWininfo.currentIssue, data);
@@ -148,6 +146,11 @@ public class Do01_1Runn implements IDooRun {
             Out.e("等待出奖号码 为" + winInfo.toString());
             MatchCore.matchInfo(hisMap, winInfo.Numner, winInfo.issue);
             MatchCore.outMessage(info, winInfo, MatchCore.outInfo(hisMap));
+            
+            if (winInfo.winInde <4){
+             
+                message("大奖["+ MatchCore.detailS[winInfo.winInde]+"] 出现了！历史出现最大间隔["+ MatchCore.maxTotal(testMysql, info.indede)+"]敬请关注！");
+            }
             if (winInfo.wiState == 1) {
                 // 已中奖 终止投注
                 if (doPour.wins(winInfo)) {
@@ -177,7 +180,22 @@ public class Do01_1Runn implements IDooRun {
                     ddpour(i, aLong, pourInfo.moey);
                 } else
                     Out.e(" 不是是目标期数 " + aLong + "  不进行下注 ");
+
+                doPour.waitDialog();
+                String principal = doPour.readPrincipal();
+                double aDouble = Double.parseDouble(principal);
+                Out.d("当前余额为：" +aDouble);
+
+                double moneyS = 0;
+                for (int j  = i+1; j <(5>longs.size()? 5 :longs.size()-j) ; j++) {
+                    moneyS+= pourInfoMap.get(aLong).moey;
+                    if (aDouble <moneyS){
+                        message(" 余额预警： 当前余额不足后："+(j-i)+"期投注 \n当前已投注 ["+(i+1)+"]期 剩余投注长度：["+ (pourInfoMap.size()-i-1)+"] 敬请留意！");
+                    }
+                        break;
+                }
             }
+            
         }
     }
 
@@ -211,8 +229,10 @@ public class Do01_1Runn implements IDooRun {
     }
 
 
-    private void message(String s) {
+    public static void message(String s) {
+        if (logUtils!=null)
         logUtils.saveLog2File(s);
+        s =" \n时间："+new SimpleDateFormat("yyyyMMdd HH:mm:ss.S").format(new Date(System.currentTimeMillis()))+" \n"+s;
         Main.pushAllMessage(s);
     }
 }

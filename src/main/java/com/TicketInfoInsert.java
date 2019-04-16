@@ -37,6 +37,7 @@ public class TicketInfoInsert implements Iinsert<DataTask.Info> {
             preparedStatement.setString(5, info.detail);
             preparedStatement.setString(7, info.date);
             preparedStatement.setString(6, info.niuniu);
+            preparedStatement.setString(8, info.alie);
             boolean execute = preparedStatement.execute();
             mysql.commit();
         }

@@ -7,6 +7,7 @@ import baidu.bean.PourInfo;
 import baidu.utils.Out;
 import com.CoreMath;
 import com.TestMysql;
+import matchore.MatchBig;
 import matchore.MatchCore;
 import subweb.subRun.Sql.VR1_1Insert;
 
@@ -51,23 +52,67 @@ public class MatchLocalDate {
 //            for (int i = 0; i < 8; i++) {
 //              
 //            }
-            int dta = 6 ;
-            Map<Integer, Integer> integerIntegerMap = matchA(infoList, dta);
-            Out.e(" inde:" + dta, integerIntegerMap.toString());
-            matchWin(integerIntegerMap, dta);
+            int dta = 6;
+//            Map<Integer, Integer> integerIntegerMap = matchA(infoList, dta);
+//            Out.e(" inde:" + dta, integerIntegerMap.toString());
+//            matchWin(integerIntegerMap, dta);
 
-//            DataInfo dataInfo = matchD(infoList, 7);
-//            Out.e(dataInfo.toString());
+            for (int i = 0; i < MatchCore.indedeS.length; i++) {
+                Out.e(" \n  》》》》》》》》》》》》》》》》》》》》》 " + MatchCore.detailS[i]);
+//                DataInfo dataInfo = matchD(infoList, i);
+//                Out.e(dataInfo.toString());
+
+                // 获取数据连续出现次数 对应的数量
+                matchE(infoList, i);
+            }
+
+//         
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    int index =0 ;
-    double totalMoney =0 ;
-    double  winMoney =0 ;
-    
+    public static void matchE(List<DataTask.Info> infoList, int i) {
+            
+        Map<Integer , Integer> countMap =new HashMap<>();
+     
+
+        for (int i1 = 0; i1 < infoList.size(); i1++) {
+            DataTask.Info info = infoList.get(i1);
+            if (info.location != i)
+                continue;
+            for (int i2 = i1+1; i2 < infoList.size(); i2++) {
+                DataTask.Info info1 = infoList.get(i2);
+                if (info1.location!=i){
+                    List<MatchBig.GroupInfo> groupInfos = new ArrayList<>();
+                    int i3 = i2 - i1;
+                   if ( countMap.containsKey(i3)){
+                       countMap.put(i3,countMap.get(i3)+1);
+                   }else {
+                       countMap.put(i3,1);
+                   }
+
+                    MatchBig.groupS(infoList, groupInfos, i1);
+                   Out.e(MatchCore.detailS[i]+" 连续 "+ i3+ " 出现后");
+                    for (MatchBig.GroupInfo groupInfo : groupInfos) {
+                        Out.e(groupInfo.toString());
+                    }
+
+                    i1 =i2 ;
+                   break;
+                }
+            }
+            
+        }
+
+     
+    }
+
+    int index = 0;
+    double totalMoney = 0;
+    double winMoney = 0;
+
     private void matchWin(Map<Integer, Integer> integerIntegerMap, int i) {
         Main.Info info3 = new Main.Info();
         info3.account = "wtw960424";
@@ -77,58 +122,63 @@ public class MatchLocalDate {
         info3.tag = "_San_tiao_0424_";
         info3.dub = 3;
         info3.mulripe = 1;
-        info3.precent=0.6;
+        info3.precent = 0.6;
         info3.minIss = 70;
-        info3.expectW =20 ;
+        info3.expectW = 20;
         info3.money = 5000;
-        info3.ticketKind =3;
-        info3.stopLoss =  1;
+        info3.ticketKind = 3;
+        info3.stopLoss = 1;
         info3.rongDuanPre = 1;
-        info3.decreasP=0.05;
+        info3.decreasP = 0.05;
 
-        DoPour_1_1 doPour_1_1 = new DoPour_1_1(null,info3 );
+        DoPour_1_1 doPour_1_1 = null;
+        try {
+            doPour_1_1 = new DoPour_1_1(null, info3);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Iterator<Integer> iterator = integerIntegerMap.keySet().iterator();
-        
+
         while (iterator.hasNext()) {
             Integer next = iterator.next();
             Integer integer = integerIntegerMap.get(next);
             // 目前出现间隔期数
-          
-            Out.e( " 处理"  +next,next+"");
+
+            Out.e(" 处理" + next, next + "");
             List<Long> longs = doPour_1_1.mathPriods(0 + "", 0);
-            Out.e(  " 得到投注", longs.toString()+"");
+            Out.e(" 得到投注", longs.toString() + "");
 
             Map<Long, PourInfo> longPourInfoMap = doPour_1_1.matchBetAmount02(longs);
 
             Out.e(longPourInfoMap.toString());
-            
-            PourInfo pourInfo = null; 
+
+            PourInfo pourInfo = null;
 
             Iterator<Long> iterator1 = longPourInfoMap.keySet().iterator();
-            while (iterator1.hasNext()){
+            while (iterator1.hasNext()) {
                 Long next1 = iterator1.next();
-                if (next1.longValue() == next){
-                    pourInfo  = longPourInfoMap.get(next1);
+                if (next1.longValue() == next) {
+                    pourInfo = longPourInfoMap.get(next1);
                     break;
                 }
             }
 
-            if (pourInfo==null){
+            if (pourInfo == null) {
                 continue;
 //                List<PourInfo> pourInfos = new MatchWin(doPour_1_1.mults).matchWin(MatchWin.creatMatchInfo(info3), next);
 //                winMoney-= pourInfos.get(pourInfos.size()-1).total* doPour_1_1.dubS[info3.dub];
 //                Out.e(next+" 当期亏损："  +pourInfos.get(pourInfos.size()-1).total* doPour_1_1.dubS[info3.dub]);
             }
 
-            winMoney +=  pourInfo.win * MatchCore.dubS[info3.dub]*integer;
+            winMoney += pourInfo.win * MatchCore.dubS[info3.dub] * integer;
 
-            Out.e( integer+" 当期总投入："  + pourInfo.total * MatchCore.dubS[info3.dub]  +" 当期盈利："+ pourInfo.win * MatchCore.dubS[info3.dub]+ " 同类型 盈利 " + pourInfo.win * MatchCore.dubS[info3.dub] *integer);
-            
+            Out.e(integer + " 当期总投入：" + pourInfo.total * MatchCore.dubS[info3.dub] + " 当期盈利：" + pourInfo.win * MatchCore.dubS[info3.dub] + " 同类型 盈利 " + pourInfo.win * MatchCore.dubS[info3.dub] * integer);
+
         }
 
-        Out.e("总盈利为："  +winMoney);
-        
-      
+        Out.e("总盈利为：" + winMoney);
+
+
     }
 
     private Map<Integer, Integer> matchA(List<DataTask.Info> infoList, int i) {
@@ -175,6 +225,7 @@ public class MatchLocalDate {
 
         DataInfo dataInfo = new DataInfo();
         dataInfo.totalCount = infoList.size();
+        ArrayList<MatchBig.GroupInfo> groupInfos = new ArrayList<>();
 
         for (int i = start; i < endIndex - 1; i++) {
             DataTask.Info info = infoList.get(i);
@@ -202,6 +253,11 @@ public class MatchLocalDate {
                         dataContinInfos = new ArrayList<>();
                         dataInfo.nCountMap.put(i2, dataContinInfos);
                     }
+
+
+                    MatchBig.groupS(infoList, groupInfos, i1);
+
+
                     i = i1 + 1;
 //                    Map<Integer, Integer> countmap = new HashMap<>();
 //                    for (int i3 = 0; i3 < endIndex; i3++) {
@@ -227,6 +283,9 @@ public class MatchLocalDate {
 
         }
 
+        for (MatchBig.GroupInfo groupInfo : groupInfos) {
+            Out.d(groupInfo.toString());
+        }
 
         return dataInfo;
     }
@@ -240,15 +299,15 @@ public class MatchLocalDate {
         int startIndex;
         int endIndex;
 
-        @Override
-        public String toString() {
-            return " \nDataContinInfo{" +
-                    "count=" + count +
-                    ", infoList=" + infoList.size() +
-                    ", startIndex=" + startIndex +
-                    ", endIndex=" + endIndex +
-                    '}';
-        }
+//        @Override
+//        public String toString() {
+//            return " DataContinInfo{" +
+//                    "count=" + count +
+//                    ", infoList=" + infoList.size() +
+//                    ", startIndex=" + startIndex +
+//                    ", endIndex=" + endIndex +
+//                    '}';
+//        }
     }
 
 
@@ -275,10 +334,9 @@ public class MatchLocalDate {
         @Override
         public String toString() {
             return "DataInfo{" +
-                    "nCountMap=" + nCountMap.toString() +
+                    interCountMap.toString() +
                     ", count=" + count +
                     ", totalCount=" + totalCount +
-                    ", infoList=" + infoList.size() +
                     ", indexS=" + indexS +
                     '}';
         }
