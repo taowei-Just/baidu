@@ -22,9 +22,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
- 
 
-public class DoPour_1_1 implements IDoPour {
+public class DoPour_1_1_02 implements IDoPour {
 
     public LogUtils logUtils;
     public Elementutil elementutil;
@@ -34,7 +33,7 @@ public class DoPour_1_1 implements IDoPour {
     public int pourCount = 0;
     List<String> windowIds;
 
-    public DoPour_1_1(RemoteWebDriver webDriver, TicketInfo info, List<String> windowIds) throws Exception {
+    public DoPour_1_1_02(RemoteWebDriver webDriver, TicketInfo info, List<String> windowIds) throws Exception {
         this.webDriver = webDriver;
         this.info = info;
         this.windowIds = windowIds;
@@ -45,13 +44,13 @@ public class DoPour_1_1 implements IDoPour {
 
     public static void main(String[] args) throws Exception {
 
-        DoPour_1_1 doPour = new DoPour_1_1(null, new Main.Info());
+        DoPour_1_1_02 doPour = new DoPour_1_1_02(null, new Main.Info());
         doPour.info.tag = "test_match";
 
 
     }
 
-    public DoPour_1_1(RemoteWebDriver webDriver, TicketInfo info) throws Exception {
+    public DoPour_1_1_02(RemoteWebDriver webDriver, TicketInfo info) throws Exception {
         this(webDriver, info, new ArrayList<>());
     }
 
@@ -403,13 +402,13 @@ public class DoPour_1_1 implements IDoPour {
         boolean b = closeDialog();
         elementutil.wait_(1);
         if (!b && !confirmPour(i, aLong, aDouble, getBettingRecords())) {
-            logUtils.saveLog2File("第" + (i + 1) + "  期号 [" + aLong + "]金额 [" + aDouble * MatchCore.dubS[info.dub] * info.mulripe + "]元" + "  下注失败 !");
+            logUtils.saveLog2File("第" + (i + 1) + "注 期号 [" + aLong + "]金额 [" + aDouble * MatchCore.dubS[info.dub] * info.mulripe + "]元" + "  下注失败 !");
             if (pourCount <= info.reInCount) {
                 logUtils.saveLog2File("重试第 " + pourCount + " 次下注  " + aLong);
                 return pour(i, aLong, aDouble);
-            }else 
-                return true;
+            }else return false ;
         } else {
+
             if (!lisStrS.contains(aLong + ""))
                 lisStrS.add(aLong + "");
             return true ;
@@ -439,7 +438,7 @@ public class DoPour_1_1 implements IDoPour {
 
         try {
             //利润上限提醒按钮
-            elementutil.wait_(1);
+
             if (webDriver.findElement(By.id("confirm-dialog")).isDisplayed()) {
                 elementutil.clickPath("/html/body/div[4]/div[2]/div/div[3]/button[2]");
             }
@@ -464,9 +463,9 @@ public class DoPour_1_1 implements IDoPour {
 
 
         List<BettingRecord> bettingRecordList = getBettingRecords();
-//        for (BettingRecord bettingRecord : bettingRecordList) {
-//            Out.e(bettingRecord.toString());
-//        }
+        for (BettingRecord bettingRecord : bettingRecordList) {
+            Out.e(bettingRecord.toString());
+        }
         for (int i = 0; i < lisStrS.size(); i++) {
             String s = lisStrS.get(i);
             for (int j = 0; j < bettingRecordList.size(); j++) {
@@ -602,7 +601,6 @@ public class DoPour_1_1 implements IDoPour {
                 winInfo.wiState = 0;
             }
         } catch (Exception e) {
-       
         }
 
 
@@ -895,6 +893,4 @@ public class DoPour_1_1 implements IDoPour {
         }
         return in;
     }
-
-  
 }

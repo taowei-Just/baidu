@@ -2,6 +2,7 @@ package baidu.Ecai;
 
 import baidu.Ecai.domain.Do01_1Runn;
 import baidu.Ecai.domain.Do01_1RunnJK;
+import baidu.Ecai.domain.Do01_1Runn_02;
 import baidu.bean.TicketInfo;
 import baidu.utils.Elementutil;
 import baidu.utils.Out;
@@ -162,6 +163,9 @@ public class MainRunn implements Runnable {
 
             case 3:
                 new Do01_1Runn(firefoxDriver, info, windowIds).start();
+                break;  
+                case 4:
+                new Do01_1Runn_02(firefoxDriver, info, windowIds).start();
                 break;
         }
     }

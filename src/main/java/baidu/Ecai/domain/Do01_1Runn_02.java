@@ -8,7 +8,6 @@ import baidu.bean.TicketInfo;
 import baidu.bean.WinInfo;
 import baidu.utils.Elementutil;
 import baidu.utils.LogUtils;
-
 import baidu.utils.Out;
 import com.TestMysql;
 import com.runn.DataTask;
@@ -18,7 +17,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Do01_1Runn implements IDooRun {
+public class Do01_1Runn_02 implements IDooRun {
 
     private static LogUtils logUtils;
     private Elementutil elementutil;
@@ -29,11 +28,11 @@ public class Do01_1Runn implements IDooRun {
     private TestMysql testMysql;
     Map<Integer, List<DataTask.Info>> hisMap = new HashMap<>();
 
-    public Do01_1Runn(RemoteWebDriver webDriver, TicketInfo info) {
+    public Do01_1Runn_02(RemoteWebDriver webDriver, TicketInfo info) {
         this(webDriver, info, new ArrayList<>());
     }
 
-    public Do01_1Runn(RemoteWebDriver webDriver, TicketInfo info, List<String> windowIds) {
+    public Do01_1Runn_02(RemoteWebDriver webDriver, TicketInfo info, List<String> windowIds) {
         this.webDriver = webDriver;
         this.info = info;
         this.windowIds = windowIds;
@@ -44,6 +43,7 @@ public class Do01_1Runn implements IDooRun {
             testMysql = new TestMysql("ticket_data_vr_1_1");
         } catch (Exception e) {
             e.printStackTrace();
+            webDriver.close();
             new Main().start(info);
         }
     }
@@ -63,6 +63,8 @@ public class Do01_1Runn implements IDooRun {
         }
     }
 
+    boolean istest = false;
+
     @Override
     public void start() {
         if (doPour == null || testMysql == null)
@@ -72,19 +74,15 @@ public class Do01_1Runn implements IDooRun {
             Out.e("1等待警示弹窗");
             doPour.waitDialog();
             Out.e("2获取当前本金");
-
             String principal = doPour.readPrincipal();
             message("账号 [ " + info.account + " ] 投注：[ " + info.indede + " ] 本金：[ " + principal + " ]");
-            Out.e("3获取当前历史列表");
-            int data = 0;
-//            = doPour.matchData(doPour.getHistories());
 
             Out.e("4获取当前投注信息");
             WinInfo currentWininfo;
             while (true) {
                 try {
                     currentWininfo = doPour.waitingIssue();
-                    if (currentWininfo.winInde < 5) {
+                    if (currentWininfo.winInde < 5 || istest) {
                         message("大奖[" + MatchCore.detailS[currentWininfo.winInde] + "] 出现了 准备下注 ！");
                         break;
                     }
@@ -92,45 +90,133 @@ public class Do01_1Runn implements IDooRun {
                     e.printStackTrace();
                 }
             }
-
             message("当前正在投注的是第[ " + currentWininfo.currentIssue + " ]期 ");
-
-            Out.e("5获取当日历史数据 ");
-            List<DataTask.Info> infos = MatchCore.querYInfoNet(testMysql, currentWininfo);
-
-            MatchCore.matchInfo(hisMap, infos);
-
-            data = doPour.matchData(infos, 0);
-            Out.e("6获取当前历史 距离  " + data);
-            Out.e("7 匹配下注金额列表");
-
-            List<PourInfo> pourInfos = MatchCore.getDanduiPourInfos(info);
-
-//            MatchCore.matchWinMoney(testMysql, infos, pourInfos, info.indede);
-//            Out.e("8 获取历史数据中最大间隔数");
-//            Map<Integer, Integer> toatalMax = MatchCore.toatalMax(testMysql, info.indede);
-//            Out.e("9 设置当前投注跳过间隔");
-//            MatchCore.dynamicIndes(pourInfos, infos, toatalMax, info.indede);
             MatchCore.indedeS[info.indede] = 0;
-
-            Out.e("11   得到下注期号列表");
-            List<Long> longs = doPour.mathPriods(currentWininfo.currentIssue, data);
-            Out.e("12   期号列表与下注金额匹配");
-            Map<Long, PourInfo> pourInfoMap = doPour.matchBetAmount03(longs, pourInfos);
-            Out.e("13 等待当前出奖号码");
-            currentWininfo = doPour.waitingIssue();
-            Out.e("14  判断当前号码是否与下注号码匹配");
-            if (Long.valueOf(currentWininfo.currentIssue) > Long.valueOf(longs.get(0))) {
-                restart();
-                return;
-            }
             Out.e("15  开始执行下注程序 ");
-
-            //开始执行
-            doOperate(longs, pourInfoMap);
+            doOperate(currentWininfo);
         } catch (Exception e) {
             e.printStackTrace();
             restart();
+        }
+
+    }
+
+
+    String lastIssue = "";
+
+
+    private void doOperate(WinInfo currentInfo) {
+        if (currentInfo == null) {
+            restart();
+            return;
+        }
+        lastIssue = currentInfo.issue;
+        List<PourInfo> pourInfos = MatchCore.getDanduiPourInfos(info);
+        Out.e(" 注金列表 " + pourInfos.toString());
+        List<WinInfo> historyList = new ArrayList<>();
+        int last4ind = 0;
+        for (int i = 0; i < pourInfos.size(); i++) {
+            Out.e(" 历史列表 " + historyList.toString());
+            PourInfo pourInfo = pourInfos.get(i);
+            int jump = 1;
+            // 之前有连续出现三次散号跳过一期
+            boolean sT = false;
+            if (historyList.size() > 2) {
+                if (historyList.get(historyList.size() - 1).winInde == 7 && historyList.get(historyList.size() - 2).winInde == 7 && historyList.get(historyList.size() - 3).winInde == 7) {
+                    Out.e(" 往期出现三次连续的散号 跳过下一期");
+                    sT = true;
+                }
+            }
+
+            // 之前有出现过三次两对跳过一期
+            if (historyList.size() > 2) {
+                int count = 0;
+                for (int j = historyList.size() - 1; j > last4ind; j--) {
+                    if (historyList.get(j).winInde == 4) {
+                        count++;
+                        last4ind = j;
+                    }
+                }
+                if (count > 2) {
+                    Out.e(" 往期出现三次三条 跳过下一期");
+                    sT = true;
+                } else {
+                    last4ind = 0;
+                }
+            }
+
+            if (sT)
+                jump += 1;
+            pourInfo.issue = (Long.parseLong(lastIssue) + jump) + "";
+            Out.e("准备下第 " + (i + 1) + " 注 " + pourInfo.toString());
+
+            while (true) {
+                WinInfo winInfo = doPour.waitingIssue();
+                if (Long.parseLong(winInfo.currentIssue) == (Long.parseLong(pourInfo.issue))) {
+                    pourInfo.issue = winInfo.currentIssue;
+                    Out.e(" 条件吻合下  " + (i + 1) + " 注 " + winInfo.currentIssue);
+                    boolean pour = doPour.pour(i, Long.parseLong(winInfo.currentIssue), pourInfo.moey  );
+                    if (!pour && !istest) {
+                        restart();
+                        Out.e("下注失败！");
+                        return;
+                    } else {
+                        WinInfo winInfo1 = waitWin(winInfo);
+                        Out.e(" 出奖信息 " + winInfo1.toString());
+                        if (winInfo1.wiState == 1) {
+                            Out.e(" 已中奖！");
+                            doPour.cancellations();
+                            if (!istest) {
+                                restart();
+                                return;
+                            }
+                        } else {
+                            Out.e("未中奖！");
+                        }
+                        lastIssue = winInfo1.issue;
+                        historyList.add(winInfo1);
+                    }
+                    break;
+                } else if (Long.parseLong(winInfo.currentIssue) == (Long.parseLong(lastIssue) + jump)) {
+
+                    WinInfo winInfo1 = waitWin(currentInfo);
+                    for (int i1 = 0; i1 < historyList.size(); i1++) {
+                        WinInfo winInfo2 = historyList.get(i1);
+                        boolean have = false;
+                        if (winInfo2.issue.equals(winInfo1.issue)) {
+                            have = true;
+                            break;
+                        }
+                        if (!have)
+                            historyList.add(winInfo2);
+                    }
+                }
+            }
+        }
+        restart();
+    }
+
+    private WinInfo waitWin(WinInfo currentInfo) {
+        Out.e("等待出奖！");
+        while (true) {
+            WinInfo win = doPour.waitingIssue();
+            if (win == null || win.issue == null) {
+                try {
+                    Thread.sleep(2 * 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                continue;
+            }
+//            Out.e(currentInfo.toString() + " : currentInfo  " + win.toString());
+            if (win.issue.equals(currentInfo.currentIssue)) {
+                return win;
+            }
+            try {
+                Thread.sleep(2 * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -155,7 +241,7 @@ public class Do01_1Runn implements IDooRun {
             Out.e("等待出奖号码 为" + winInfo.toString());
 //            MatchCore.matchInfo(hisMap, winInfo.Numner, winInfo.issue);
 //            MatchCore.outMessage(info, winInfo, MatchCore.outInfo(hisMap));
-            
+
             if (winInfo.winInde < 4) {
 
                 message("大奖[" + MatchCore.detailS[winInfo.winInde] + "] 出现了！历史出现最大间隔[" + MatchCore.maxTotal(testMysql, info.indede) + "]敬请关注！");
@@ -186,19 +272,14 @@ public class Do01_1Runn implements IDooRun {
                 //未中奖继续投注
                 if (winInfo.currentIssue.equals("" + aLong)) {
                     Out.e(" 是目标期数 " + aLong + "  进行下注 ");
-                    ddpour(i, aLong, pourInfo.moey*info.mulripe);
+                    ddpour(i, aLong, pourInfo.moey * info.mulripe);
                 } else
                     Out.e(" 不是是目标期数 " + aLong + "  不进行下注 ");
 
                 doPour.waitDialog();
-                double aDouble = 0;
-                try {
-                    String principal = doPour.readPrincipal();
-                    aDouble = Double.parseDouble(principal);
-                    Out.d("当前余额为：" + aDouble);
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                }
+                String principal = doPour.readPrincipal();
+                double aDouble = Double.parseDouble(principal);
+                Out.d("当前余额为：" + aDouble);
 
                 double moneyS = 0;
                 for (int j = i + 1; j < (5 > longs.size() ? 5 : longs.size() - j); j++) {

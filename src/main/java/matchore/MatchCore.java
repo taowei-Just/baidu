@@ -90,6 +90,7 @@ public class MatchCore {
                 i--;
             }
         }
+      
         Collections.sort(infos);
         Out.e(" 得到最近数据 " +infos.toString());
         return infos ;
@@ -384,6 +385,8 @@ public class MatchCore {
 //            Out.d(" 验证 " + ((bet * mults[matchWinInfo.inde]) - total));
 
         }
+        
+        Collections.sort(doubles);
         return doubles;
     }
 

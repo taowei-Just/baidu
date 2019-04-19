@@ -22,8 +22,8 @@ public class MatchBig {
     }
 
     // 得出所有组合的最小出现间隔和该间隔的数量
-    private void start() {
-        String str = "SELECT distinct(periods), date,number,ordern,location,detail FROM ticket_data_vr_1_1  where date ='20190413'  ORDER BY date asc ,  periods asc";
+    private void start() {   String str = "SELECT distinct(periods), date,number,ordern,location,detail FROM ticket_data_vr_1_1  where date >'2019'  ORDER BY date asc ,  periods asc";
+     
         List<DataTask.Info> infos = MatchCore.querYInfoList(maySql, str);
 
 
